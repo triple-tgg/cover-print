@@ -1,0 +1,243 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Graphic Production Training v2</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{background:#eef1f7;color:#202437;font-family:"Segoe UI",Tahoma,sans-serif}
+.slide{display:none;width:100vw;height:100vh;padding:38px 6vw 82px;background:#fff;position:relative;overflow:auto}
+.slide.active{display:flex;flex-direction:column}.slide:before{content:"";position:absolute;right:-120px;top:-150px;width:380px;height:380px;border-radius:50%;background:linear-gradient(135deg,#eeeaff,#dcf7ff);opacity:.9}
+.top,.body,.footer{position:relative;z-index:1}.top,.footer{display:flex;justify-content:space-between;align-items:center}.pill{background:#eeeaff;color:#5e52d4;border-radius:999px;padding:8px 13px;font-weight:900;font-size:12px}.label,.eyebrow{font-size:10px;letter-spacing:.14em;font-weight:900;color:#9299aa}.body{max-width:1080px;margin:auto 0}.eyebrow{color:#665bd6;margin-bottom:10px}h1{font-size:clamp(32px,5vw,58px);line-height:1.05;letter-spacing:-.04em;margin:0 0 14px;max-width:900px}.lead{font-size:clamp(16px,2vw,21px);line-height:1.55;color:#626a7d;max-width:900px;margin:0 0 25px;white-space:pre-line}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:1000px}.card{background:#fafbfe;border:1px solid #e4e7ef;border-radius:15px;padding:15px 17px;line-height:1.6;font-size:14px;min-height:70px}.card h3{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#6258cf;margin:0 0 7px}.card div{white-space:pre-line}.code{position:relative;background:#f7f8fb}pre{margin:0;padding-right:70px;white-space:pre-wrap;font:13px/1.7 Consolas,monospace;color:#30364b}.copy{position:absolute;right:9px;bottom:9px;border:1px solid #d8dce6;background:#fff;border-radius:7px;padding:6px 9px;font-size:11px;font-weight:800;cursor:pointer}.copy:hover{background:#f0f1f5}.footer{margin-top:25px;font-size:11px;color:#9aa0af}
+.controls{position:fixed;z-index:100;left:50%;bottom:16px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.98);border:1px solid #dfe3ec;border-radius:999px;padding:7px 9px;box-shadow:0 8px 30px rgba(30,35,70,.16)}.controls button{border:1px solid #d9dce5;background:#fff;color:#34394a;border-radius:999px;padding:8px 14px;font-weight:800;cursor:pointer}.controls button:disabled{opacity:.35;cursor:not-allowed}.counter{min-width:55px;text-align:center;font-size:12px;font-weight:900;color:#5d54c8}.progress{position:fixed;z-index:101;left:0;right:0;bottom:0;height:4px;background:#e6e8ef}#bar{height:100%;width:0;background:#6a5fde;transition:width .2s}
+@media(max-width:760px){.slide{padding:25px 20px 80px}.grid{grid-template-columns:1fr}.body{margin-top:35px;margin-bottom:20px}.label{display:none}.controls{bottom:12px}}
+@media print{html,body{overflow:visible}.slide,.slide.active{display:flex!important;page-break-after:always;height:100vh}.controls,.progress{display:none}}
+</style></head><body>
+<section class="slide" data-index="0">
+      <div class="top"><span class="pill">01</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>AI กับงาน Graphic Production</h1><p class="lead">AI ช่วยได้ตั้งแต่รับ Requirement → ตรวจไฟล์ → Retouch → ปรับสี → เพิ่ม/ลบ Object → ตรวจ Prepress → ก่อนส่ง Print</p><div class="grid"><div class="card"><h3></h3><div>เป้าหมายการเรียน</div></div><div class="card"><h3></h3><div>เห็นภาพว่า AI ช่วยงานจริงตรงไหน</div></div><div class="card"><h3></h3><div>เรียนรู้การเขียน Command + Prompt</div></div><div class="card"><h3></h3><div>รู้ข้อควรระวังและจุดที่ต้องให้ Graphic เป็นผู้ตัดสินใจ</div></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>1 / 21</span></div>
+    </section><section class="slide" data-index="1">
+      <div class="top"><span class="pill">02</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>Workflow ของแผนก</h1><p class="lead">ลูกค้า → Requirement + ไฟล์ต้นแบบ → Graphic ตรวจ → ปรับ Artwork → ตรวจสี/ภาพ → Prepress → Print</p><div class="grid"><div class="card"><h3></h3><div>จุดที่ AI เข้ามาช่วย</div></div><div class="card"><h3></h3><div>รับและสรุป Requirement</div></div><div class="card"><h3></h3><div>ตรวจ Artwork</div></div><div class="card"><h3></h3><div>ช่วยแก้ภาพ</div></div><div class="card"><h3></h3><div>วิเคราะห์สี</div></div><div class="card"><h3></h3><div>Compare ต้นฉบับกับ Final</div></div><div class="card"><h3></h3><div>ตรวจ Prepress</div></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>2 / 21</span></div>
+    </section><section class="slide" data-index="2">
+      <div class="top"><span class="pill">03</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>หลักการใช้ AI: Command + Detail</h1><p class="lead">Command บอก “ทำอะไร” และรายละเอียดบอก “ต้องการให้ทำอย่างไร”</p><div class="grid"><div class="card"><h3></h3><div>สูตร</div></div><div class="card code"><pre>/command
+สิ่งที่ต้องการทำ
+รายละเอียด / ตำแหน่ง / ขนาด
+สิ่งที่ห้ามเปลี่ยน
+สิ่งที่ต้องการให้ตรวจ</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>3 / 21</span></div>
+    </section><section class="slide" data-index="3">
+      <div class="top"><span class="pill">04</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>วิธีใช้: 1 Command</h1><p class="lead">เหมาะกับงานง่าย ๆ ที่ต้องการแก้เพียงจุดเดียว</p><div class="grid"><div class="card"><h3></h3><div>ตัวอย่าง 1</div></div><div class="card code"><pre>/remove-background
+ลบพื้นหลังออก ให้เหลือเฉพาะสินค้า
+รักษาขอบสินค้าให้ครบ และห้ามเปลี่ยนรูปร่าง</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div><div class="card"><h3></h3><div>ตัวอย่าง 2</div></div><div class="card code"><pre>/remove-object
+ลบรถด้านหน้าภาพ เติมพื้นที่ถนนให้ต่อเนื่อง และรักษา Perspective เดิม</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>4 / 21</span></div>
+    </section><section class="slide" data-index="4">
+      <div class="top"><span class="pill">05</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>วิธีใช้: หลาย Command</h1><p class="lead">เหมาะกับงานที่ต้องทำหลายขั้นตอน</p><div class="grid"><div class="card"><h3></h3><div>Workflow</div></div><div class="card code"><pre>/extract-product
+/remove-background
+/replace-background
+/lighting
+/add-text</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div><div class="card"><h3></h3><div>รายละเอียด</div></div><div class="card"><h3></h3><div>แยกสินค้า → ลบพื้นหลัง → สร้างฉาก → จัดแสง → ใส่ข้อความ</div></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>5 / 21</span></div>
+    </section><section class="slide" data-index="5">
+      <div class="top"><span class="pill">06</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>Retouch</h1><p class="lead">AI ช่วยลดงานแก้ภาพซ้ำ ๆ เช่น ฝุ่น รอยตำหนิ คน รถ หรือสิ่งรบกวน</p><div class="grid"><div class="card"><h3></h3><div>ขั้นตอน</div></div><div class="card code"><pre>1. ส่งภาพต้นฉบับ
+2. ระบุจุดที่ต้องแก้
+3. ระบุสิ่งที่ห้ามเปลี่ยน
+4. Edit
+5. ตรวจภาพที่ 100%</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div><div class="card"><h3></h3><div>Prompt</div></div><div class="card code"><pre>/retouch
+ลบรอยฝุ่นและรอยตำหนิบนพื้นผิวสินค้า
+รักษารูปร่าง สี ฉลาก และ Texture เดิม</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>6 / 21</span></div>
+    </section><section class="slide" data-index="6">
+      <div class="top"><span class="pill">07</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>เพิ่ม Object</h1><p class="lead">เพิ่มก้อนหิน ต้นไม้ หรือองค์ประกอบที่ต้องการ โดยให้เข้ากับภาพเดิม</p><div class="grid"><div class="card"><h3></h3><div>Prompt</div></div><div class="card code"><pre>/add-object
+เพิ่มก้อนหิน 3 ก้อนบริเวณด้านล่างขวา
+ให้ Perspective ขนาด แสง และเงาสอดคล้องกับภาพเดิม
+ห้ามเปลี่ยนวัตถุหลัก</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div><div class="card"><h3></h3><div>ต้องตรวจ</div></div><div class="card"><h3></h3><div>ขนาด / Perspective / แสง / เงา / ขอบวัตถุ / ความสมจริง</div></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>7 / 21</span></div>
+    </section><section class="slide" data-index="7">
+      <div class="top"><span class="pill">08</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>ลบ Object</h1><p class="lead">เหมาะกับการลบรถ คน ต้นไม้ หรือวัตถุที่ไม่ต้องการ</p><div class="grid"><div class="card"><h3></h3><div>Prompt</div></div><div class="card code"><pre>/remove-object
+ลบต้นไม้ด้านขวา
+เติม Background ที่หายไปให้ต่อเนื่อง
+รักษา Perspective และ Lighting เดิม</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div><div class="card"><h3></h3><div>ต้องระวัง</div></div><div class="card"><h3></h3><div>AI อาจเติม Background ผิด หรือทำให้ Pattern / Texture ต่อไม่เนียน</div></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>8 / 21</span></div>
+    </section><section class="slide" data-index="8">
+      <div class="top"><span class="pill">09</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>เพิ่มความคมชัด</h1><p class="lead">AI ช่วย Sharpen หรือ Upscale ได้ แต่ต้องระวังการสร้างรายละเอียดเกินจริง</p><div class="grid"><div class="card"><h3></h3><div>Prompt</div></div><div class="card code"><pre>/sharpen
+เพิ่มความคมชัดอย่างเป็นธรรมชาติ
+รักษารายละเอียดเดิมของสินค้าและ Texture
+ห้ามสร้างรายละเอียดใหม่
+ห้ามทำให้เกิด Halo รอบขอบ</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div><div class="card"><h3></h3><div>ขั้นตอน</div></div><div class="card code"><pre>1. ใช้ต้นฉบับที่ดีที่สุด
+2. ตรวจขนาด/Resolution
+3. Sharpen หรือ Upscale
+4. ตรวจที่ 100%
+5. ตรวจที่ขนาดพิมพ์จริง</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>9 / 21</span></div>
+    </section><section class="slide" data-index="9">
+      <div class="top"><span class="pill">10</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>ความคมชัด: ต้องระวังอะไร</h1><p class="lead">ภาพที่ดูคมบนจอไม่ได้แปลว่าจะเหมาะกับงานพิมพ์เสมอ</p><div class="grid"><div class="card"><h3></h3><div>⚠ ระวัง</div></div><div class="card"><h3></h3><div>Halo รอบขอบวัตถุ</div></div><div class="card"><h3></h3><div>Noise เพิ่มขึ้น</div></div><div class="card"><h3></h3><div>Compression Artifact</div></div><div class="card"><h3></h3><div>Texture ถูก AI สร้างใหม่</div></div><div class="card"><h3></h3><div>Logo / ตัวหนังสือเปลี่ยนรายละเอียด</div></div><div class="card"><h3></h3><div>ตรวจหลังทำ</div></div><div class="card"><h3></h3><div>ขอบวัตถุ / ใบหน้า / Logo / Text / Texture / Noise / รายละเอียดเล็ก ๆ</div></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>10 / 21</span></div>
+    </section><section class="slide" data-index="10">
+      <div class="top"><span class="pill">11</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>Adjust สี</h1><p class="lead">AI เหมาะกับการช่วยวิเคราะห์และเสนอแนวทางปรับสี แต่ไม่ควรใช้แทน Color Management</p><div class="grid"><div class="card"><h3></h3><div>Workflow</div></div><div class="card code"><pre>Reference + Artwork
+→ AI วิเคราะห์ความต่าง
+→ AI เสนอ Adjustment
+→ Graphic ปรับในเครื่องมือจริง
+→ Proof / Print Test</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div><div class="card"><h3></h3><div>Prompt</div></div><div class="card code"><pre>/color-analysis
+เปรียบเทียบสี Artwork กับ Reference
+ระบุบริเวณที่ต่างมากที่สุด และเสนอแนวทางปรับ Hue, Saturation, Brightness</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>11 / 21</span></div>
+    </section><section class="slide" data-index="11">
+      <div class="top"><span class="pill">12</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>Color Matching</h1><p class="lead">ใช้ AI ช่วยหา “จุดที่สีต่าง” ก่อนที่ Graphic จะไปปรับจริง</p><div class="grid"><div class="card"><h3></h3><div>ตัวอย่างผลลัพธ์</div></div><div class="card code"><pre>Red: ต่างมาก
+Blue: ต่างปานกลาง
+Yellow: ต่างเล็กน้อย</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div><div class="card"><h3></h3><div>ข้อสำคัญ</div></div><div class="card"><h3></h3><div>สีพิมพ์จริงขึ้นกับ ICC Profile, Color Space, เครื่องพิมพ์, หมึก, วัสดุ และ Proof</div></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>12 / 21</span></div>
+    </section><section class="slide" data-index="12">
+      <div class="top"><span class="pill">13</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>Compare Reference กับ Final</h1><p class="lead">ลดความเสี่ยงว่า Artwork ที่แก้แล้วหลุดจากไฟล์ต้นฉบับลูกค้า</p><div class="grid"><div class="card"><h3></h3><div>Prompt</div></div><div class="card code"><pre>/compare
+เปรียบเทียบต้นฉบับกับ Artwork ก่อนพิมพ์
+สรุปเฉพาะจุดที่ต่างด้านสี Object ข้อความ ตำแหน่ง และ Crop</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div><div class="card"><h3></h3><div>Workflow</div></div><div class="card"><h3></h3><div>Reference + Final → AI สรุป Difference → Graphic ตรวจ → ยืนยัน</div></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>13 / 21</span></div>
+    </section><section class="slide" data-index="13">
+      <div class="top"><span class="pill">14</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>Requirement → Graphic Task</h1><p class="lead">ให้ AI เปลี่ยนข้อความจากลูกค้าให้เป็นรายการงานที่ทำตามได้</p><div class="grid"><div class="card"><h3></h3><div>ข้อความลูกค้า</div></div><div class="card"><h3></h3><div>“เอาต้นไม้ขวาออก เพิ่มก้อนหินด้านล่าง สีแดงอย่าสดเกินไป แต่ Logo ต้องเหมือนเดิม”</div></div><div class="card"><h3></h3><div>AI แตกเป็น</div></div><div class="card code"><pre>☐ Remove right tree
+☐ Add rocks bottom
+☐ Reduce red saturation
+☐ Preserve Logo</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>14 / 21</span></div>
+    </section><section class="slide" data-index="14">
+      <div class="top"><span class="pill">15</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>Prepress Check</h1><p class="lead">ให้ AI เป็นผู้ช่วยตรวจรอบแรกก่อนส่งเข้าเครื่องพิมพ์</p><div class="grid"><div class="card"><h3></h3><div>ตรวจ</div></div><div class="card"><h3></h3><div>ขนาด / Resolution / Image Quality / Bleed / Safe Area / สี / ข้อความ / Logo / Reference</div></div><div class="card"><h3></h3><div>สถานะ</div></div><div class="card code"><pre>PASS = ผ่านเบื้องต้น
+WARNING = ต้องตรวจ
+ERROR = ต้องแก้ก่อน</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>15 / 21</span></div>
+    </section><section class="slide" data-index="15">
+      <div class="top"><span class="pill">16</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>ตัวอย่าง Prepress Report</h1><p class="lead">ผลลัพธ์ควรบอก “อะไรผ่าน” และ “จุดไหนต้องตรวจ”</p><div class="grid"><div class="card"><h3></h3><div>REPORT</div></div><div class="card code"><pre>✓ Size: ผ่าน
+✓ Resolution: ผ่าน
+⚠ Image Quality: พบ 2 ภาพควรตรวจ
+⚠ Color: พบ 3 จุดต่างจาก Reference
+✓ Bleed: ผ่าน
+STATUS: WARNING</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div><div class="card"><h3></h3><div>หลักการ</div></div><div class="card"><h3></h3><div>AI ช่วยหา “จุดให้คนตรวจ” ไม่ใช่ผู้อนุมัติไฟล์พิมพ์</div></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>16 / 21</span></div>
+    </section><section class="slide" data-index="16">
+      <div class="top"><span class="pill">17</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>เมื่อ AI ทำพลาด</h1><p class="lead">อย่า Generate ใหม่แบบสุ่ม ให้บอกปัญหาและแก้ Prompt ให้เฉพาะเจาะจง</p><div class="grid"><div class="card"><h3></h3><div>ปัญหา</div></div><div class="card code"><pre>ต้นไม้ใหญ่เกินไป
+แสงไม่ตรง
+ขอบไม่เนียน
+สีสินค้าเปลี่ยน</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div><div class="card"><h3></h3><div>วิธีแก้</div></div><div class="card code"><pre>“ลดขนาดลง 30%”
+“ให้ทิศทางเงาตรงกับวัตถุเดิม”
+“รักษาสีสินค้าเดิม ห้ามเปลี่ยน”</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>17 / 21</span></div>
+    </section><section class="slide" data-index="17">
+      <div class="top"><span class="pill">18</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>Workflow ที่แนะนำสำหรับทีม</h1><p class="lead">แบ่ง AI เป็นผู้ช่วยหลายจุด แล้วให้ Graphic คุม Final</p><div class="grid"><div class="card"><h3></h3><div>01 Brief Parser</div></div><div class="card"><h3></h3><div>Requirement → Checklist</div></div><div class="card"><h3></h3><div>02 Artwork Check</div></div><div class="card"><h3></h3><div>ตรวจไฟล์และหาจุดเสี่ยง</div></div><div class="card"><h3></h3><div>03 Image Assistant</div></div><div class="card"><h3></h3><div>Retouch / Add / Remove / Extend</div></div><div class="card"><h3></h3><div>04 Color Assistant</div></div><div class="card"><h3></h3><div>วิเคราะห์และเสนอ Adjustment</div></div><div class="card"><h3></h3><div>05 Compare</div></div><div class="card"><h3></h3><div>เทียบ Reference กับ Final</div></div><div class="card"><h3></h3><div>06 Prepress Check</div></div><div class="card"><h3></h3><div>ตรวจรอบสุดท้าย</div></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>18 / 21</span></div>
+    </section><section class="slide" data-index="18">
+      <div class="top"><span class="pill">19</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>Workshop: งานจริง</h1><p class="lead">โจทย์: ลูกค้าส่งภาพป้ายมา ต้องเพิ่มต้นไม้ 2 ต้น ลบรถ ปรับสีแดง และตรวจเทียบต้นฉบับ</p><div class="grid"><div class="card"><h3></h3><div>ให้ผู้เรียนทำ</div></div><div class="card code"><pre>1. เลือก Command
+2. เขียน Prompt
+3. ระบุสิ่งที่ห้ามเปลี่ยน
+4. ระบุจุดที่ต้องตรวจ</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div><div class="card"><h3></h3><div>แนวทาง</div></div><div class="card code"><pre>/remove-object → /add-object → /color-analysis → /compare → /prepress-check</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>19 / 21</span></div>
+    </section><section class="slide" data-index="19">
+      <div class="top"><span class="pill">20</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>Checklist ก่อนส่ง Print</h1><p class="lead">AI ช่วยตรวจ แต่ Graphic ต้องเป็นผู้ยืนยัน Final</p><div class="grid"><div class="card"><h3></h3><div>CHECKLIST</div></div><div class="card code"><pre>□ Requirement ตรงกับลูกค้า
+□ Artwork ตรงกับ Reference
+□ Object ครบ/ถูกต้อง
+□ สีผ่าน Workflow
+□ ภาพไม่แตก
+□ ขนาด/Resolution ถูกต้อง
+□ Bleed/Safe Area ถูกต้อง
+□ Graphic ตรวจ Final แล้ว</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>20 / 21</span></div>
+    </section><section class="slide" data-index="20">
+      <div class="top"><span class="pill">21</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+      <div class="body"><div class="eyebrow">GRAPHIC PRODUCTION</div><h1>สรุป: AI Graphic Production Assistant</h1><p class="lead">เป้าหมายไม่ใช่ให้ AI แทน Graphic แต่ให้ AI ลดงานซ้ำ ลด Error และช่วยตรวจจุดเสี่ยง</p><div class="grid"><div class="card"><h3></h3><div>เริ่มใช้ก่อน</div></div><div class="card code"><pre>Retouch
+Add / Remove Object
+Sharpen / Upscale
+Color Analysis
+Compare
+Prepress Check</pre><button class="copy" onclick="copyCard(this)">📋 Copy</button></div><div class="card"><h3></h3><div>หลักสำคัญ</div></div><div class="card"><h3></h3><div>AI ช่วยสร้างและวิเคราะห์ → Graphic ตรวจ → Graphic ตัดสินใจ → Final → Print</div></div></div></div>
+      <div class="footer"><span>AI Graphic Production Assistant</span><span>21 / 21</span></div>
+    </section>
+<section class="slide" data-index="21">
+<div class="top"><span class="pill">22</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+<div class="body"><div class="eyebrow">ADOBE + AI INTEGRATION</div><h1>Adobe เดิม + AI: เชื่อมกันอย่างไร</h1><p class="lead">ถ้าทีมใช้ Adobe อยู่แล้ว ไม่จำเป็นต้องย้ายออกจาก Adobe สามารถวาง AI เป็นผู้ช่วยและ Automation รอบ Workflow เดิมได้</p><div class="grid"><div class="card"><h3>แนวทางหลัก</h3><div>Graphic ยังทำงานใน Photoshop / Illustrator / Acrobat ตามเดิม
+AI เข้ามาช่วยวิเคราะห์ สร้างคำสั่ง ตรวจงาน และทำงานซ้ำ ๆ</div></div><div class="card"><h3>Architecture</h3><div>Graphic → AI Assistant → Adobe / Adobe Services → ผลลัพธ์ → Graphic ตรวจ → Final</div></div></div></div>
+<div class="footer"><span>AI Graphic Production Assistant</span><span>22 / 29</span></div>
+</section>
+<section class="slide" data-index="22">
+<div class="top"><span class="pill">23</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+<div class="body"><div class="eyebrow">ADOBE + AI INTEGRATION</div><h1>Adobe ที่เกี่ยวข้องกับ Workflow นี้</h1><p class="lead">เลือกวิธีเชื่อมต่อให้เหมาะกับงาน ไม่จำเป็นต้องใช้ API ตัวเดียวทั้งหมด</p><div class="grid"><div class="card"><h3>Photoshop</h3><div>ใช้ Plugin/Extension และ Automation เพื่อทำงานกับเอกสารและ Layer ตามความสามารถของ Photoshop</div></div><div class="card"><h3>Illustrator</h3><div>ใช้ Automation/Plugin เพื่อช่วยงานที่เป็นขั้นตอนซ้ำ ๆ กับ Artwork</div></div><div class="card"><h3>Acrobat / PDF</h3><div>ใช้ Adobe PDF Services สำหรับงาน PDF ตามบริการที่รองรับ เช่น งานแปลงและจัดการ PDF</div></div><div class="card"><h3>Firefly / Adobe AI Services</h3><div>ใช้ความสามารถ Generative AI/Creative AI ที่ Adobe เปิดให้เชื่อมต่อผ่านบริการที่เกี่ยวข้อง ตามสิทธิ์และ API ที่เปิดใช้งาน</div></div></div></div>
+<div class="footer"><span>AI Graphic Production Assistant</span><span>23 / 29</span></div>
+</section>
+<section class="slide" data-index="23">
+<div class="top"><span class="pill">24</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+<div class="body"><div class="eyebrow">ADOBE + AI INTEGRATION</div><h1>วิธีเชื่อมต่อแบบง่ายที่สุด</h1><p class="lead">เริ่มจาก AI เป็นผู้สั่งงาน → Adobe ทำงาน → ส่งผลกลับมาให้ Graphic ตรวจ</p><div class="grid"><div class="card"><h3>แบบ A: Plugin</h3><div>AI Assistant อยู่ใกล้ Adobe
+→ รับ Command
+→ Plugin/Automation ทำงานใน Adobe
+→ บันทึกผลเป็น Version ใหม่</div></div><div class="card"><h3>แบบ B: Backend API</h3><div>หน้าเว็บ/ระบบภายใน
+→ Backend
+→ Adobe Service API
+→ ได้ไฟล์/ผลลัพธ์
+→ ส่งกลับให้ Graphic</div></div><div class="card"><h3>เลือกแบบไหนดี</h3><div>งานที่ต้องควบคุม Layer/Document ในเครื่อง → Plugin/Automation เหมาะกว่า
+
+งานที่ต้องทำเป็น Service/Batch/หลายไฟล์ → Backend/API เหมาะกว่า</div></div></div></div>
+<div class="footer"><span>AI Graphic Production Assistant</span><span>24 / 29</span></div>
+</section>
+<section class="slide" data-index="24">
+<div class="top"><span class="pill">25</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+<div class="body"><div class="eyebrow">ADOBE + AI INTEGRATION</div><h1>ตัวอย่าง: สั่ง AI แล้วให้ Adobe ทำงาน</h1><p class="lead">ตัวอย่าง Workflow สำหรับงานจริงของทีม Graphic</p><div class="grid"><div class="card"><h3>Graphic พิมพ์</h3><div>“เอาต้นไม้ด้านขวาออก เพิ่มก้อนหิน 3 ก้อน และเพิ่มความคมชัด แต่ห้ามเปลี่ยน Logo”</div></div><div class="card"><h3>AI แปลงเป็น Task</h3><div>1. Remove Object
+2. Add Object
+3. Sharpen
+4. Preserve Logo
+5. Save New Version</div></div><div class="card"><h3>Adobe ทำงาน</h3><div>Plugin/Automation เปิดไฟล์ → ทำแต่ละขั้นตอน → บันทึกเป็นไฟล์ใหม่ เช่น Artwork_v02</div></div><div class="card"><h3>Graphic ตรวจ</h3><div>เปิดไฟล์ใน Adobe → Zoom 100% → ตรวจขอบ / สี / Logo / Text → Approve หรือแก้ต่อ</div></div></div></div>
+<div class="footer"><span>AI Graphic Production Assistant</span><span>25 / 29</span></div>
+</section>
+<section class="slide" data-index="25">
+<div class="top"><span class="pill">26</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+<div class="body"><div class="eyebrow">ADOBE + AI INTEGRATION</div><h1>ตัวอย่าง: ระบบตรวจไฟล์ก่อน Print</h1><p class="lead">AI ไม่จำเป็นต้องแก้ไฟล์เสมอไป สามารถทำหน้าที่เป็น QC ก่อนส่ง Print</p><div class="grid"><div class="card"><h3>Input</h3><div>Artwork + Reference + Requirement</div></div><div class="card"><h3>AI / Service</h3><div>อ่าน Requirement → ตรวจขนาด → ตรวจ Resolution → วิเคราะห์ความต่าง → ตรวจจุดเสี่ยง</div></div><div class="card"><h3>ผลลัพธ์</h3><div>PASS
+WARNING: พบจุดต้องตรวจ
+ERROR: ต้องแก้ก่อนส่ง</div></div><div class="card"><h3>Adobe</h3><div>Graphic เปิดไฟล์ใน Adobe เพื่อแก้เฉพาะจุด แล้ว Run Check ใหม่</div></div></div></div>
+<div class="footer"><span>AI Graphic Production Assistant</span><span>26 / 29</span></div>
+</section>
+<section class="slide" data-index="26">
+<div class="top"><span class="pill">27</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+<div class="body"><div class="eyebrow">ADOBE + AI INTEGRATION</div><h1>วิธีเชื่อมต่อเชิงเทคนิค</h1><p class="lead">ตัวอย่างโครงสร้างที่ทีม IT สามารถนำไปพัฒนาต่อได้</p><div class="grid"><div class="card"><h3>1. User Interface</h3><div>Web App / Chat UI
+Graphic พิมพ์คำสั่ง เช่น “ตรวจไฟล์นี้ก่อน Print”</div></div><div class="card"><h3>2. AI Layer</h3><div>LLM ทำหน้าที่ตีความคำสั่ง → เลือก Tool ที่ต้องเรียก → สร้าง Parameters</div></div><div class="card"><h3>3. Integration Layer</h3><div>Backend / API Gateway ตรวจสิทธิ์ แล้วเรียก Adobe API / Service / Plugin</div></div><div class="card"><h3>4. Adobe</h3><div>ทำงานกับ Photoshop / Illustrator / PDF Service ตาม Integration ที่เลือก</div></div><div class="card"><h3>5. Return</h3><div>ส่ง Status + Log + Output File / Version กลับมา</div></div></div></div>
+<div class="footer"><span>AI Graphic Production Assistant</span><span>27 / 29</span></div>
+</section>
+<section class="slide" data-index="27">
+<div class="top"><span class="pill">28</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+<div class="body"><div class="eyebrow">ADOBE + AI INTEGRATION</div><h1>สิ่งที่ต้องเตรียมก่อนทำจริง</h1><p class="lead">อย่าเริ่มจากการต่อ API ทั้งระบบ ให้เลือก 1 Use Case ที่วัดผลได้ก่อน</p><div class="grid"><div class="card"><h3>ด้าน Adobe</h3><div>ตรวจว่า Workflow ใช้ Photoshop, Illustrator, Acrobat หรือบริการใด
+ตรวจความสามารถและสิทธิ์ของ Adobe ที่องค์กรมี</div></div><div class="card"><h3>ด้านระบบ</h3><div>Adobe Developer account / Project ตามบริการที่เลือก
+Authentication เช่น OAuth หรือ Credential ที่บริการกำหนด
+Backend สำหรับเก็บ Secret</div></div><div class="card"><h3>ด้าน Workflow</h3><div>กำหนด Input → Process → Output
+กำหนดว่า AI ทำอะไรได้ และอะไรต้องให้ Graphic อนุมัติ</div></div><div class="card"><h3>ด้านความปลอดภัย</h3><div>ห้ามฝัง Secret/API Credential ไว้ในหน้าเว็บโดยตรง
+กำหนดสิทธิ์และ Audit Log
+เก็บ Original และ Version ทุกครั้ง</div></div></div></div>
+<div class="footer"><span>AI Graphic Production Assistant</span><span>28 / 29</span></div>
+</section>
+<section class="slide" data-index="28">
+<div class="top"><span class="pill">29</span><span class="label">AI GRAPHIC PRODUCTION TRAINING</span></div>
+<div class="body"><div class="eyebrow">ADOBE + AI INTEGRATION</div><h1>แผนเริ่มต้นสำหรับทีม Graphic</h1><p class="lead">แนะนำให้เริ่มจากงานที่เสี่ยงต่ำและทำซ้ำบ่อย ก่อนขยับไป Automation ที่ซับซ้อน</p><div class="grid"><div class="card"><h3>Phase 1</h3><div>AI วิเคราะห์ Requirement + Prepress Check
+ไม่แก้ไฟล์อัตโนมัติ</div></div><div class="card"><h3>Phase 2</h3><div>Retouch / Remove / Add Object / Sharpen
+AI ช่วยทำงาน → Graphic ตรวจ</div></div><div class="card"><h3>Phase 3</h3><div>เชื่อม Adobe Automation
+สั่งงานซ้ำ ๆ จาก Command → สร้าง Version อัตโนมัติ</div></div><div class="card"><h3>Phase 4</h3><div>Production Pipeline
+รับไฟล์ → Check → AI Assist → Adobe → QC → Final → Archive</div></div></div></div>
+<div class="footer"><span>AI Graphic Production Assistant</span><span>29 / 29</span></div>
+</section>
+<div class="controls"><button id="prev" onclick="go(-1)">← ก่อนหน้า</button><span class="counter"><span id="cur">1</span> / <span id="total">29</span></span><button id="next" onclick="go(1)">ถัดไป →</button></div>
+<div class="progress"><div id="bar"></div></div>
+<script>
+const slides=[...document.querySelectorAll(".slide")],cur=document.getElementById("cur"),total=document.getElementById("total"),bar=document.getElementById("bar"),prev=document.getElementById("prev"),next=document.getElementById("next");let i=0;
+function show(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle("active",k===i));cur.textContent=i+1;total.textContent=slides.length;bar.style.width=((i+1)/slides.length*100)+"%";prev.disabled=i===0;next.disabled=i===slides.length-1;}
+function go(n){show(i+n)}function copyCard(btn){const t=btn.parentElement.querySelector("pre").innerText;navigator.clipboard.writeText(t).then(()=>{btn.textContent="✓ Copied!";setTimeout(()=>btn.textContent="📋 Copy",1200)})}
+document.addEventListener("keydown",e=>{if(["ArrowRight","ArrowDown","PageDown"," "].includes(e.key)){e.preventDefault();go(1)}if(["ArrowLeft","ArrowUp","PageUp"].includes(e.key)){e.preventDefault();go(-1)}if(e.key==="Home")show(0);if(e.key==="End")show(slides.length-1)});show(0);
+</script></body></html>
