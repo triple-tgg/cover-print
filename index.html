@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Use Cases by Role — Detailed Examples</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:#f4f7fb;color:#172033;line-height:1.65}
+.wrap{max-width:1250px;margin:auto;padding:0 20px}
+.hero{background:linear-gradient(135deg,#0f172a,#1e3a8a 55%,#6d28d9);color:#fff;padding:48px 0}
+h1{font-size:38px;margin:0 0 8px}.hero p{font-size:17px;opacity:.9;margin:0}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:28px}
+.stat{background:#ffffff14;border:1px solid #ffffff25;border-radius:16px;padding:15px}.stat b{display:block;font-size:25px}
+.nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #e5e7eb;box-shadow:0 3px 15px #0000000a}
+.nav .wrap{display:flex;gap:8px;flex-wrap:wrap;padding-top:11px;padding-bottom:11px}
+.nav a{color:#334155;text-decoration:none;background:#f1f5f9;padding:7px 12px;border-radius:999px;font-size:14px}
+section{padding:30px 0}.role-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:7px}
+h2{font-size:29px;margin:0}.badge{background:#ede9fe;color:#6d28d9;padding:6px 11px;border-radius:999px;font-weight:800;font-size:13px}
+.note{color:#64748b;margin:0 0 18px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:21px;box-shadow:0 5px 22px #0f172a0a}
+.card h3{margin:0 0 8px;font-size:20px}.tag{display:inline-block;background:#eef2ff;color:#4338ca;border-radius:7px;padding:3px 8px;font-size:12px;font-weight:800;margin-bottom:9px}
+.case{background:#f8fafc;border-left:4px solid #6366f1;padding:11px 13px;border-radius:9px;margin:10px 0}
+.prompt{background:#111827;color:#e5e7eb;border-radius:10px;padding:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;white-space:pre-wrap}
+.output{background:#ecfdf5;border:1px solid #a7f3d0;border-radius:11px;padding:13px;margin-top:11px}
+.output-title{font-weight:900;color:#047857;margin-bottom:5px}.output pre{margin:0;background:#fff;border:1px solid #d1fae5;border-radius:8px;padding:10px;white-space:pre-wrap;font-family:inherit;font-size:13px}
+.output ul{margin:5px 0 0 18px;padding:0}.output li{margin:3px 0}
+.impact{margin-top:10px;font-size:13px;color:#475569}.impact b{color:#047857}
+.flow{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:12px}.flow span{background:#eef2ff;color:#3730a3;padding:6px 10px;border-radius:8px;font-size:13px}.flow i{color:#94a3b8}
+.footer{padding:35px 0 60px;color:#64748b;font-size:13px}
+@media(max-width:850px){.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}h1{font-size:30px}.role-title{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+<div class="wrap">
+<h1>AI Use Cases by Role — Detailed Examples</h1>
+<p>ตัวอย่างการนำ AI ไปใช้ในงานจริง พร้อม Input → Prompt → ผลลัพธ์แบบละเอียด สำหรับ 5 Role</p>
+<div class="stats">
+<div class="stat"><b>5</b>Roles</div>
+<div class="stat"><b>50</b>Use Cases</div>
+<div class="stat"><b>50+</b>ตัวอย่างผลลัพธ์</div>
+<div class="stat"><b>5</b>รูปแบบงาน AI</div>
+<div class="stat"><b>End-to-End</b>Workflow</div>
+</div>
+</div>
+</header>
+
+<nav class="nav"><div class="wrap">
+<a href="#marketing">📣 การตลาด</a><a href="#sales">💼 ฝ่ายขาย</a><a href="#iso">📑 ISO</a><a href="#hr">👥 HR</a><a href="#recruit">🧑‍💼 Recruit</a><a href="#workflow">🔗 Workflow</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="marketing">
+<div class="role-title"><h2>📣 1. การตลาด (Marketing)</h2><span class="badge">10 Use Cases</span></div>
+<p class="note">เน้น Content, Customer Insight, Campaign, Competitor และ Marketing Analytics</p>
+<div class="grid">
+
+<article class="card"><span class="tag">01 • Content</span><h3>สร้าง Content เปิดตัวสินค้า</h3>
+<div class="case"><b>กรณี:</b> มีสินค้าใหม่และต้องทำ Facebook, LINE OA, Website และ Email</div>
+<div class="prompt">จากข้อมูล Product ที่ให้ สร้าง Content 4 ช่องทาง โดยคงข้อมูลจริงเหมือนกันทั้งหมด แต่ปรับรูปแบบให้เหมาะกับแต่ละช่องทาง</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Facebook
+🚀 เปิดตัว [Product]
+ตัวช่วยสำหรับ [กลุ่มลูกค้า]
+จุดเด่น: 1) ...
+2) ...
+3) ...
+CTA: ดูรายละเอียดเพิ่มเติม
+
+LINE OA
+✨ มีอะไรใหม่?
+[Product] ช่วยให้คุณ...
+เหมาะสำหรับ...
+👉 สนใจดูรายละเอียด กดที่นี่
+
+Website
+Headline: [Product] สำหรับ...
+Key Benefits:
+• ...
+• ...
+• ...
+
+Email
+Subject: พบกับ [Product] ใหม่
+Body: เรียนคุณ...
+วันนี้เราขอแนะนำ...</pre></div>
+<div class="impact"><b>ช่วยลด:</b> เวลาเขียน Draft และการปรับ Content หลายช่องทาง</div></article>
+
+<article class="card"><span class="tag">02 • Content Repurpose</span><h3>เปลี่ยน 1 บทความเป็น 20 Content</h3>
+<div class="case"><b>กรณี:</b> Marketing มีบทความดี 1 เรื่อง แต่ไม่มีเวลาทำ Content ต่อ</div>
+<div class="prompt">จากบทความนี้ สร้าง Facebook 5 โพสต์, Short Video 5 Script, LINE 3 ข้อความ, Blog Title 3 หัวข้อ และ Ad Hook 4 แบบ โดยห้ามสร้างข้อมูลใหม่</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><ul><li>Post: “5 สิ่งที่ควรรู้ก่อนเลือก...”</li><li>Video Hook: “ถ้าคุณกำลังเจอปัญหา... ดูคลิปนี้ก่อน”</li><li>Ad Hook: “ลดขั้นตอนที่เสียเวลา ด้วย...”</li><li>LINE: “วันนี้มีเรื่องสำคัญที่อยากให้คุณรู้...”</li></ul></div>
+<div class="impact"><b>ช่วยลด:</b> เวลาแตก Content จาก Source เดียว</div></article>
+
+<article class="card"><span class="tag">03 • Segment</span><h3>แบ่ง Customer Segment</h3>
+<div class="case"><b>กรณี:</b> มีข้อมูลลูกค้า 10,000 ราย ต้องการรู้ว่าควรทำ Campaign กับใคร</div>
+<div class="prompt">วิเคราะห์ Customer Data ตาม Recency, Frequency, Monetary, Product Interest และ Engagement แล้วแบ่ง Segment พร้อม Marketing Action</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Segment A — VIP
+ซื้อบ่อย + มูลค่าสูง
+Action: Loyalty / Exclusive Offer
+
+Segment B — ลูกค้าเดิมที่หายไป
+เคยซื้อ แต่ไม่มี Activity 6 เดือน
+Action: Win-back Campaign
+
+Segment C — Interested
+เปิด Email/ดูสินค้า แต่ยังไม่ซื้อ
+Action: Education + Retargeting
+
+Segment D — New
+เพิ่งสมัคร/เพิ่งซื้อครั้งแรก
+Action: Welcome + Cross-sell</pre></div></article>
+
+<article class="card"><span class="tag">04 • Campaign</span><h3>สร้าง Campaign 30 วัน</h3>
+<div class="case"><b>กรณี:</b> ต้องการเพิ่ม Lead แต่ทีมยังไม่มี Campaign Plan</div>
+<div class="prompt">สร้าง Campaign 30 วันสำหรับเพิ่ม Lead แบ่ง Awareness, Consideration, Conversion พร้อม Content, Channel, CTA และ KPI</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Week 1 — Awareness
+Educational Post 3 ชิ้น
+KPI: Reach / Engagement
+
+Week 2 — Consideration
+Case Study 2 ชิ้น
+KPI: Click / Landing Page View
+
+Week 3 — Conversion
+Offer + Demo
+KPI: Leads / Conversion
+
+Week 4 — Retargeting
+Follow-up กลุ่มที่สนใจ
+KPI: Conversion Rate</pre></div></article>
+
+<article class="card"><span class="tag">05 • Competitor</span><h3>วิเคราะห์คู่แข่ง</h3>
+<div class="case"><b>กรณี:</b> มีคู่แข่ง 5 รายและต้องหาจุดแตกต่างก่อนทำ Campaign</div>
+<div class="prompt">เปรียบเทียบคู่แข่งจากข้อมูลที่ให้ในด้าน Target, Positioning, Feature, Price, Message และ Customer Pain Point</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>คู่แข่ง A: เด่นด้านราคา
+คู่แข่ง B: เด่นด้าน Brand
+คู่แข่ง C: เด่นด้าน Feature
+คู่แข่ง D: เด่นด้าน Speed
+
+ช่องว่าง:
+ไม่มีรายใดสื่อสารเรื่อง After-sales Support ชัดเจน
+
+Opportunity:
+Position เราเป็น “โซลูชัน + ดูแลหลังการขายครบวงจร”</pre></div></article>
+
+<article class="card"><span class="tag">06 • Ads</span><h3>สร้าง Ad Variations</h3>
+<div class="case"><b>กรณี:</b> ต้องทำโฆษณาหลายชุดเพื่อ A/B Test</div>
+<div class="prompt">สร้างโฆษณา 10 Variations โดยเปลี่ยน Hook, Pain Point, Benefit และ CTA แต่ต้องคงข้อเท็จจริงของ Product</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Ad A — Pain Point
+“เสียเวลาไปกับงาน Manual อยู่หรือไม่?”
+
+Ad B — Benefit
+“ลดขั้นตอนงานซ้ำ ๆ ด้วย...”
+
+Ad C — Question
+“ถ้าคุณลดเวลางานนี้ได้ 30% จะเกิดอะไรขึ้น?”
+
+Ad D — Social Proof
+“เหมาะสำหรับทีมที่ต้อง...”</pre></div></article>
+
+<article class="card"><span class="tag">07 • Campaign Analysis</span><h3>วิเคราะห์ผล Campaign</h3>
+<div class="case"><b>กรณี:</b> มีตัวเลข Reach, CTR, CPC, Conversion และ Cost</div>
+<div class="prompt">วิเคราะห์ Campaign และหาว่าอะไรทำให้ผลลัพธ์ดี/แย่ พร้อมเสนอสิ่งที่ควรปรับในรอบถัดไป</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Campaign A
+CTR 4.8% | CVR 6.2% | CPA 180
+สถานะ: Strong
+
+Campaign B
+CTR 1.4% | CVR 1.1% | CPA 620
+สถานะ: At Risk
+
+Insight:
+A มี Hook ที่ตรงกับ Pain Point มากกว่า
+B ได้ Click แต่ Landing Page Conversion ต่ำ
+
+Action:
+ปรับ Landing Page ของ B
+และเพิ่มงบ A แบบค่อยเป็นค่อยไป</pre></div></article>
+
+<article class="card"><span class="tag">08 • Customer Voice</span><h3>วิเคราะห์ความคิดเห็นลูกค้า</h3>
+<div class="case"><b>กรณี:</b> มี Review/Comment 5,000 ข้อความ</div>
+<div class="prompt">จัดกลุ่มความคิดเห็นเป็น Positive, Negative, Suggestion และ Theme พร้อมนับจำนวนและสรุปตัวอย่างข้อความ</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Theme
+Service        31%
+Price          24%
+Product        22%
+Speed          13%
+Support        10%
+
+Top Positive:
+“ใช้งานง่าย”
+
+Top Negative:
+“ตอบกลับช้า”
+
+Top Suggestion:
+“อยากให้มี Mobile Version”</pre></div></article>
+
+<article class="card"><span class="tag">09 • Calendar</span><h3>สร้าง Marketing Content Calendar</h3>
+<div class="case"><b>กรณี:</b> ทีมต้องวางแผนโพสต์รายเดือน</div>
+<div class="prompt">สร้าง Content Calendar 30 วัน โดยแบ่ง Content Pillar 4 กลุ่ม และกำหนด Topic, Format, Channel, CTA และ Objective</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>1 ก.ย. — Educational — Carousel — FB
+2 ก.ย. — Product — Short Video — IG
+3 ก.ย. — Customer Story — Post — FB
+4 ก.ย. — FAQ — LINE
+5 ก.ย. — Promotion — Ads
+
+Pillar:
+Education 40%
+Product 25%
+Trust 20%
+Promotion 15%</pre></div></article>
+
+<article class="card"><span class="tag">10 • Report</span><h3>ทำ Marketing Executive Summary</h3>
+<div class="case"><b>กรณี:</b> ผู้บริหารไม่ต้องการดู Dashboard หลายหน้า แต่อยากรู้ว่า “เกิดอะไรขึ้น”</div>
+<div class="prompt">จาก Marketing Data สร้าง Executive Summary 1 หน้า: Performance, Change, Key Insight, Risk และ Recommendation</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Executive Summary — Aug 2026
+
+Performance:
+Leads +18% MoM
+CPA -9%
+Conversion +3.2 pp
+
+Key Insight:
+Organic Content สร้าง Lead ได้ดีขึ้น
+
+Risk:
+Paid Campaign B CPA สูงต่อเนื่อง
+
+Recommendation:
+ย้ายงบ 15% จาก B ไป Campaign A
+และทดสอบ Creative ใหม่ 3 แบบ</pre></div></article>
+</div></section>
+
+<section id="sales">
+<div class="role-title"><h2>💼 2. ฝ่ายขาย (Sales)</h2><span class="badge">10 Use Cases</span></div>
+<p class="note">เน้น Lead, Account Intelligence, Meeting, Proposal, Objection และ Pipeline</p>
+<div class="grid">
+
+<article class="card"><span class="tag">01 • Lead</span><h3>จัดลำดับ Lead</h3>
+<div class="case"><b>กรณี:</b> Lead เข้ามา 200 ราย แต่ Sales มีเวลาจำกัด</div>
+<div class="prompt">จัด Lead เป็น High/Medium/Low โดยดู Need, Budget, Timeline, Authority และ Engagement พร้อมเหตุผลจากข้อมูลที่มี</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>HIGH
+1. ABC Co. — Score 92
+Need: ชัดเจน
+Budget: มี
+Timeline: ภายใน 30 วัน
+Next: นัด Demo
+
+2. XYZ Ltd. — Score 87
+Need: ชัดเจน
+Engagement: สูง
+Next: ติดต่อ Decision Maker
+
+MEDIUM
+DEF Co. — Score 61
+Need: มี แต่ยังไม่มี Timeline</pre></div></article>
+
+<article class="card"><span class="tag">02 • Account</span><h3>สรุปลูกค้าก่อนเข้าพบ</h3>
+<div class="case"><b>กรณี:</b> ลูกค้าเดิมมีข้อมูลจาก Email, Meeting และ CRM หลายเดือน</div>
+<div class="prompt">สรุป Account เป็น Company Overview, Current Situation, Pain Point, Previous Discussion, Opportunity, Risk และ Next Questions</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>ABC Co.
+
+Current:
+ใช้ระบบเดิมมา 5 ปี
+
+Pain Point:
+1. รายงานใช้เวลานาน
+2. ข้อมูลซ้ำ
+3. ไม่มี Dashboard
+
+Previous:
+เคยขอ Demo Module Reporting
+
+Opportunity:
+Reporting + Integration
+
+Risk:
+Budget ยังไม่ Confirm
+
+ถามในการ Meeting:
+“ถ้าไม่แก้ปัญหานี้ในปีนี้
+Business Impact คืออะไร?”</pre></div></article>
+
+<article class="card"><span class="tag">03 • Meeting</span><h3>Meeting Transcript → Summary</h3>
+<div class="case"><b>กรณี:</b> Meeting 60 นาที มีรายละเอียดจำนวนมาก</div>
+<div class="prompt">จาก Transcript สรุป Decision, Requirement, Concern, Action Item, Owner, Due Date และ Follow-up Message</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>DECISION
+ลูกค้าตกลงเริ่ม Pilot
+
+REQUIREMENT
+• Dashboard
+• Export Excel
+• User 50 คน
+
+ACTION
+Sales → ส่ง Proposal — 15 Sep
+Customer → ส่ง Sample Data — 17 Sep
+SA → ประเมิน Integration — 18 Sep
+
+NEXT MEETING
+20 Sep 2026</pre></div></article>
+
+<article class="card"><span class="tag">04 • Proposal</span><h3>สร้าง Proposal จาก Requirement</h3>
+<div class="case"><b>กรณี:</b> ลูกค้าส่ง Requirement 20 ข้อ</div>
+<div class="prompt">จัด Requirement ให้เป็น Proposal โดยสร้าง Executive Summary, Problem, Solution, Scope, Deliverables, Timeline, Assumption และ Next Step</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Executive Summary:
+เสนอระบบเพื่อแก้ปัญหา...
+
+Scope:
+1. Dashboard
+2. Workflow
+3. Reporting
+4. User Management
+
+Timeline:
+Phase 1 — Analysis
+Phase 2 — Development
+Phase 3 — UAT
+Phase 4 — Go-live
+
+Assumption:
+ลูกค้าจัดเตรียม Master Data...</pre></div></article>
+
+<article class="card"><span class="tag">05 • Follow-up</span><h3>สร้าง Follow-up หลัง Meeting</h3>
+<div class="case"><b>กรณี:</b> Sales ต้องส่ง Email หลังประชุมหลายราย</div>
+<div class="prompt">จาก Meeting Summary สร้าง Follow-up Email ที่สุภาพ กระชับ และยืนยันสิ่งที่ตกลงโดยไม่เพิ่มข้อมูลใหม่</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Subject: สรุปการประชุมวันที่ 12 ก.ย.
+
+เรียนคุณ...
+
+ขอบคุณสำหรับการประชุมวันนี้
+สรุปประเด็นที่ตกลง:
+• ...
+• ...
+
+Next Step:
+ทางเราจะส่ง Proposal ภายใน 15 ก.ย.
+และรอ Sample Data จากทางคุณภายใน 17 ก.ย.
+
+ขอบคุณครับ/ค่ะ</pre></div></article>
+
+<article class="card"><span class="tag">06 • Objection</span><h3>ช่วยเตรียมรับมือ Objection</h3>
+<div class="case"><b>กรณี:</b> ลูกค้าบอก “ราคาแพง”</div>
+<div class="prompt">สร้างแนวทางตอบ Objection 5 แบบ โดยให้ Sales ถามเพื่อค้นหาเหตุผลจริงก่อนเสนอทางเลือก</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>ลูกค้า: “ราคาสูงไปครับ”
+
+ตอบ:
+“เข้าใจครับ ขอถามเพิ่มนิดหนึ่งว่า
+สิ่งที่กังวลหลักคือ Budget รวม
+หรือกำลังเปรียบเทียบกับข้อเสนออื่นครับ?”
+
+ถ้าเป็น Budget:
+→ เสนอแบ่ง Phase
+
+ถ้าเป็น Comparison:
+→ เปรียบเทียบ Scope/Value
+
+ห้าม:
+→ ลดราคาโดยไม่รู้สาเหตุ</pre></div></article>
+
+<article class="card"><span class="tag">07 • Forecast</span><h3>วิเคราะห์ Pipeline</h3>
+<div class="case"><b>กรณี:</b> มี Deal 50 รายและต้อง Forecast สิ้นเดือน</div>
+<div class="prompt">วิเคราะห์ Pipeline แบ่ง Commit, Best Case, At Risk พร้อมบอกเหตุผลและข้อมูลที่ Sales ต้อง Update</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Commit: 1.2M
+Best Case: 1.8M
+At Risk: 2.4M
+
+Top Risk:
+• ไม่มี Next Step 4 Deal
+• ค้างเกิน 30 วัน 3 Deal
+• Decision Maker ยังไม่พบ 2 Deal
+
+Priority:
+เร่ง Update 6 Deal นี้ก่อน</pre></div></article>
+
+<article class="card"><span class="tag">08 • Cross-sell</span><h3>หาโอกาสขายเพิ่ม</h3>
+<div class="case"><b>กรณี:</b> ลูกค้าปัจจุบันใช้ Product A แต่ยังไม่ได้ใช้ B/C</div>
+<div class="prompt">วิเคราะห์ Customer Usage และประวัติการซื้อเพื่อหา Cross-sell/Upsell Opportunity พร้อมเหตุผล</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Customer: ABC
+
+Current:
+Product A — ใช้งานสูง
+
+Opportunity:
+Product B — เหมาะกับปัญหา Reporting
+เหตุผล: ลูกค้าส่งคำถามเรื่อง Report 4 ครั้ง
+
+Product C — ยังไม่แนะนำ
+เหตุผล: ยังไม่มี Trigger ที่ชัดเจน
+
+Priority:
+B = High
+C = Low</pre></div></article>
+
+<article class="card"><span class="tag">09 • Sales Email</span><h3>Personalize ข้อความขาย</h3>
+<div class="case"><b>กรณี:</b> Sales ต้องส่ง Outreach ให้ลูกค้า 30 บริษัท</div>
+<div class="prompt">จากข้อมูลแต่ละบริษัท สร้างข้อความ Outreach ที่อ้างอิง Business Context ของบริษัทนั้น หลีกเลี่ยงข้อความ Mass Message และห้ามอ้างข้อมูลที่ไม่มีใน Source</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Subject: แนวทางลดเวลาการทำ Report ของ ABC
+
+สวัสดีคุณ...
+
+เห็นว่าทีมของ ABC มีการใช้งาน...
+จึงอยากนำเสนอแนวทาง...
+
+หากประเด็นนี้อยู่ในแผนปีนี้
+ยินดีนัด Demo 30 นาทีครับ/ค่ะ</pre></div></article>
+
+<article class="card"><span class="tag">10 • Sales Review</span><h3>สรุป Weekly Sales Review</h3>
+<div class="case"><b>กรณี:</b> Manager ต้อง Review Sales ทุกสัปดาห์</div>
+<div class="prompt">จาก Sales Data สร้าง Weekly Review: Achievement, Gap, Top Deal, At Risk, Activity และ Action ของสัปดาห์หน้า</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Weekly Sales Review
+
+Achievement: 82% Target
+Gap: -1.8M
+
+Top Deal:
+ABC — 900K — Commit
+
+At Risk:
+XYZ — 650K — Decision Delay
+
+Next Week:
+1. Close ABC
+2. Escalate XYZ
+3. Contact 10 New Leads</pre></div></article>
+</div></section>
+
+<section id="iso">
+<div class="role-title"><h2>📑 3. ISO / Document Control</h2><span class="badge">10 Use Cases</span></div>
+<p class="note">AI ทำหน้าที่เป็นผู้ช่วยค้นหา ตรวจสอบ เปรียบเทียบ และเตรียม Audit Evidence — การอนุมัติและตัดสินใจ Compliance ยังเป็นของผู้รับผิดชอบ</p>
+<div class="grid">
+
+<article class="card"><span class="tag">01 • Search</span><h3>ถามตอบจาก ISO Document</h3>
+<div class="case"><b>กรณี:</b> พนักงานไม่รู้ว่าขั้นตอนอยู่ในเอกสารใด</div>
+<div class="prompt">ค้นจากเอกสารที่ให้เท่านั้นว่า “ขั้นตอนการควบคุมเอกสาร” อยู่ที่เอกสารใด Section ใด และสรุปสาระสำคัญ พร้อม Source</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>พบ:
+Document: DCP-001
+Title: Document Control Procedure
+Revision: 03
+Section: 4.2 Document Approval
+
+สรุป:
+เอกสารต้องผ่าน Review และ Approval
+ก่อนนำไปใช้งาน
+
+Source:
+DCP-001 Rev.03, Section 4.2</pre></div></article>
+
+<article class="card"><span class="tag">02 • Version</span><h3>ตรวจ Version Conflict</h3>
+<div class="case"><b>กรณี:</b> มีเอกสารหลาย Revision และไม่แน่ใจว่ามีเอกสารไหนอ้าง Version เก่า</div>
+<div class="prompt">เปรียบเทียบ Revision และ Reference ของเอกสารทั้งหมด หาเอกสารที่ยังอ้าง Revision เก่า พร้อมระบุจุดที่พบ</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>DCP-001
+Current: Rev.03
+
+พบ Reference ที่ต้องตรวจ:
+WI-004 → อ้าง DCP-001 Rev.02
+FORM-002 → อ้าง DCP-001 Rev.03
+
+Potential Issue:
+WI-004 อาจยังใช้ Reference เก่า
+
+Action:
+ให้ Document Owner ตรวจยืนยัน</pre></div></article>
+
+<article class="card"><span class="tag">03 • Completeness</span><h3>ตรวจเอกสารก่อนเข้าสู่ Review</h3>
+<div class="case"><b>กรณี:</b> ผู้จัดทำส่ง Document มาแต่ข้อมูลไม่ครบ</div>
+<div class="prompt">ตรวจ Document เทียบกับ Template และ Checklist ที่ให้มา ระบุ Missing Field และข้อมูลที่ไม่สอดคล้อง</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>✓ Document ID
+✓ Owner
+✓ Revision
+✓ Effective Date
+✗ Approval Date
+✗ Revision History
+✗ Related Document
+
+Status:
+Incomplete
+
+Recommendation:
+แก้ไข 3 รายการก่อนส่ง Review</pre></div></article>
+
+<article class="card"><span class="tag">04 • Audit</span><h3>เตรียม Audit Evidence</h3>
+<div class="case"><b>กรณี:</b> Auditor ขอหลักฐานตาม Requirement 20 ข้อ</div>
+<div class="prompt">ทำ Mapping Requirement → Document → Evidence → Status และระบุรายการที่ยังไม่พบหลักฐาน</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>ISO 7.5.2 → SOP-001 → Approved SOP → Found
+ISO 7.5.3 → DCP-001 → Revision Record → Found
+ISO 8.5.1 → WI-012 → Work Instruction → Missing
+ISO 9.1 → KPI-003 → Monitoring Record → Partial
+
+Audit Preparation:
+Missing = 1
+Partial = 1</pre></div></article>
+
+<article class="card"><span class="tag">05 • Gap</span><h3>Gap Analysis ระหว่าง Requirement กับ Procedure</h3>
+<div class="case"><b>กรณี:</b> ต้องตรวจว่า Procedure ครอบคลุมข้อกำหนดหรือไม่</div>
+<div class="prompt">เปรียบเทียบ Requirement กับ Procedure โดยใช้ Covered / Partial / Missing และอธิบาย Evidence ที่รองรับแต่ละข้อ</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Requirement 7.5 → Covered
+Evidence: DCP-001 Section 4
+
+Requirement 8.5 → Partial
+Evidence: SOP-003
+Gap: ไม่มีขั้นตอน Verification
+
+Requirement 9.1 → Missing
+Evidence: ไม่พบ
+
+Priority:
+1. Requirement 9.1
+2. Requirement 8.5</pre></div></article>
+
+<article class="card"><span class="tag">06 • Change Impact</span><h3>วิเคราะห์ผลกระทบเมื่อ Document เปลี่ยน</h3>
+<div class="case"><b>กรณี:</b> Procedure หลักถูกแก้ไขและต้องรู้ว่าอะไรได้รับผลกระทบ</div>
+<div class="prompt">จาก Document Revision ใหม่ วิเคราะห์ Reference, WI, Form, Training และหน่วยงานที่อาจได้รับผลกระทบ โดยระบุเป็น Potential Impact</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Changed:
+DCP-001 Rev.02 → Rev.03
+
+Potential Impact:
+• WI-004
+• WI-007
+• FORM-002
+• Training Document Control
+
+Potential Owner:
+QA
+Document Control
+Process Owner
+
+หมายเหตุ:
+ต้องให้ Owner ยืนยันผลกระทบจริง</pre></div></article>
+
+<article class="card"><span class="tag">07 • Classification</span><h3>จัดประเภทเอกสารอัตโนมัติ</h3>
+<div class="case"><b>กรณี:</b> มีไฟล์จำนวนมากและต้องจัดเป็น Policy / Procedure / WI / Form / Record</div>
+<div class="prompt">จัดประเภทเอกสารจากเนื้อหาและ Metadata ที่ให้ พร้อมเหตุผลและ Confidence และให้คนตรวจรายการที่ Confidence ต่ำ</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>DOC-001 → Procedure — 96%
+DOC-002 → Work Instruction — 91%
+DOC-003 → Form — 98%
+DOC-004 → Record — 88%
+DOC-005 → Policy — 72%
+
+Review Queue:
+DOC-005 เพราะ Confidence < 80%</pre></div></article>
+
+<article class="card"><span class="tag">08 • Review</span><h3>เปรียบเทียบ Document ก่อน-หลังแก้</h3>
+<div class="case"><b>กรณี:</b> Owner ส่ง Rev.04 และต้องรู้ว่ามีอะไรเปลี่ยนจาก Rev.03</div>
+<div class="prompt">Diff Document Rev.03 กับ Rev.04 และสรุป Added / Removed / Changed พร้อมประเมินว่า Section ใดควร Review เพิ่ม</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Added:
+• Section 5.4 Approval Flow
+
+Changed:
+• Section 4.2 จาก 2 Approval เป็น 3 Approval
+
+Removed:
+• ขั้นตอน Manual Sign
+
+Review Impact:
+Document Control
+Approval Workflow
+Training Material</pre></div></article>
+
+<article class="card"><span class="tag">09 • Distribution</span><h3>ตรวจ Controlled Copy / Distribution</h3>
+<div class="case"><b>กรณี:</b> ต้องตรวจว่าแต่ละหน่วยงานได้รับเอกสาร Current Version หรือไม่</div>
+<div class="prompt">เทียบ Master Document กับ Distribution List และ Version ของแต่ละหน่วยงาน แล้วหา Site ที่อาจใช้ Version เก่า</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Master: SOP-002 Rev.05
+
+Site A → Rev.05 ✓
+Site B → Rev.05 ✓
+Site C → Rev.04 ⚠
+Site D → Rev.05 ✓
+
+Action:
+ตรวจ Site C
+และยืนยันการ Replace Controlled Copy</pre></div></article>
+
+<article class="card"><span class="tag">10 • Audit Q&A</span><h3>จำลองคำถาม Auditor</h3>
+<div class="case"><b>กรณี:</b> ก่อน Audit ต้องซ้อมตอบคำถาม</div>
+<div class="prompt">จาก ISO Requirement และ Document ที่ให้ จำลองคำถาม Auditor 15 ข้อ พร้อมสิ่งที่ควรตอบและ Evidence ที่ควรเปิด โดยห้ามแต่ง Evidence ที่ไม่มี</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Auditor:
+“คุณควบคุมเอกสารที่หมดอายุอย่างไร?”
+
+ควรตอบ:
+อ้างอิง DCP-001 Section 4.5
+มีขั้นตอนถอนเอกสาร Obsolete
+
+Evidence:
+Obsolete Document List
+Withdrawal Record
+
+ถ้า Evidence ไม่พบ:
+ให้ระบุ “ยังไม่พบหลักฐาน”
+แทนการเดา</pre></div></article>
+</div></section>
+
+<section id="hr">
+<div class="role-title"><h2>👥 4. HR</h2><span class="badge">10 Use Cases</span></div>
+<p class="note">เน้น HR Knowledge, Employee Communication, JD, Analytics, Survey และ Onboarding</p>
+<div class="grid">
+
+<article class="card"><span class="tag">01 • HR Q&A</span><h3>ตอบคำถาม Policy พนักงาน</h3>
+<div class="case"><b>กรณี:</b> HR ได้คำถามเดิมซ้ำ ๆ เช่น วันลา สวัสดิการ หรือขั้นตอนต่าง ๆ</div>
+<div class="prompt">ตอบจาก HR Policy ที่ให้เท่านั้น พร้อมชื่อเอกสาร/ข้ออ้างอิง และหากไม่พบข้อมูลให้บอกว่าไม่พบ</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>คำถาม:
+“วันลาพักร้อนใช้ได้เมื่อไร?”
+
+คำตอบ:
+ตาม Employee Handbook Rev.04
+พนักงานสามารถใช้สิทธิ์ตามเงื่อนไข...
+
+อ้างอิง:
+Employee Handbook
+Section 5.2
+
+หากกรณีของคุณไม่ตรงตามเงื่อนไข
+กรุณาติดต่อ HR</pre></div></article>
+
+<article class="card"><span class="tag">02 • Announcement</span><h3>แปลง Policy เป็นประกาศ</h3>
+<div class="case"><b>กรณี:</b> Policy ใหม่มีภาษาทางการและพนักงานอ่านยาก</div>
+<div class="prompt">แปลง Policy เป็นประกาศภาษาที่พนักงานเข้าใจง่าย โดยคงสาระสำคัญ วันมีผล และผู้ได้รับผลกระทบ</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>ประกาศ: ปรับปรุงนโยบายการทำงานล่วงเวลา
+
+มีผล: 1 ต.ค. 2026
+
+สิ่งที่เปลี่ยน:
+• ขั้นตอนการขอ OT
+• ผู้อนุมัติ
+• Deadline การส่งคำขอ
+
+พนักงานต้องทำ:
+1. อ่าน Policy ใหม่
+2. ใช้ Form ใหม่ตั้งแต่วันที่มีผล
+
+สอบถาม:
+HR Department</pre></div></article>
+
+<article class="card"><span class="tag">03 • JD</span><h3>สร้าง Job Description</h3>
+<div class="case"><b>กรณี:</b> Manager อธิบายหน้าที่งานแบบสั้น ๆ และ HR ต้องทำ JD</div>
+<div class="prompt">จากข้อมูลหน้าที่งาน สร้าง JD ที่มี Job Purpose, Responsibilities, KPI, Must-have, Nice-to-have และ Competency</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Position: System Analyst
+
+Job Purpose:
+วิเคราะห์และออกแบบระบบ...
+
+Responsibilities:
+• วิเคราะห์ Requirement
+• จัดทำ Functional Specification
+• ประสาน BA/DEV/UAT
+
+Must-have:
+Requirement Analysis
+SQL
+UML
+
+Nice-to-have:
+API
+Cloud
+
+KPI:
+Requirement Quality
+On-time Delivery</pre></div></article>
+
+<article class="card"><span class="tag">04 • HR Analytics</span><h3>วิเคราะห์ Turnover</h3>
+<div class="case"><b>กรณี:</b> HR เห็นว่าพนักงานลาออกเพิ่มขึ้น แต่ยังไม่รู้สาเหตุ</div>
+<div class="prompt">วิเคราะห์ Turnover ตามเดือน, อายุงาน, Department และ Job Level พร้อมหาความผิดปกติและตั้งสมมติฐานที่ต้องตรวจสอบ</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Turnover:
+2025 = 8%
+2026 = 13%
+
+สูงสุด:
+Operation = 19%
+Sales = 15%
+
+ตามอายุงาน:
+0–1 ปี = 21%
+1–3 ปี = 14%
+3+ ปี = 7%
+
+Hypothesis:
+• Workload
+• Manager
+• Compensation
+• Career Path
+
+ข้อควรตรวจ:
+Exit Interview ของกลุ่ม 0–1 ปี</pre></div></article>
+
+<article class="card"><span class="tag">05 • Survey</span><h3>วิเคราะห์ Employee Survey</h3>
+<div class="case"><b>กรณี:</b> มีคำตอบปลายเปิด 3,000 รายการ</div>
+<div class="prompt">จัดกลุ่มความคิดเห็นเป็น Theme และ Sentiment พร้อมสรุป Top Concern และข้อเสนอแนะ โดยไม่เปิดเผยตัวตน</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Theme:
+Workload 32%
+Manager 24%
+Compensation 18%
+Communication 15%
+Development 11%
+
+Top Concern:
+Workload
+
+ตัวอย่างความคิดเห็น:
+“งานเพิ่มแต่จำนวนคนเท่าเดิม”
+
+Suggested Action:
+ตรวจ Workload ของทีมที่คะแนนต่ำ</pre></div></article>
+
+<article class="card"><span class="tag">06 • Onboarding</span><h3>สร้างแผน 30/60/90 วัน</h3>
+<div class="case"><b>กรณี:</b> รับ System Analyst ใหม่และต้องทำแผน Onboarding</div>
+<div class="prompt">สร้าง Onboarding Plan 30/60/90 วัน แบ่ง Knowledge, Training, System Access, People to Meet และ Deliverables</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Day 1–30
+เรียนรู้ Product + Process
+ผ่าน Training
+Deliverable: ทำความเข้าใจ System
+
+Day 31–60
+Shadow Project
+เริ่มรับ Requirement เล็ก ๆ
+Deliverable: Requirement Document
+
+Day 61–90
+Own งานบางส่วน
+Deliverable: ส่งงานได้เอง
+Checkpoint: Manager Review</pre></div></article>
+
+<article class="card"><span class="tag">07 • Employee Communication</span><h3>ตอบคำถามจากประกาศ/Policy ใหม่</h3>
+<div class="case"><b>กรณี:</b> มีประกาศใหม่และคาดว่าจะมีคำถามจำนวนมาก</div>
+<div class="prompt">สร้าง FAQ จากประกาศนี้ 15 ข้อ พร้อมคำตอบที่อ้างอิงข้อความในประกาศเท่านั้น</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Q: มีผลเมื่อไร?
+A: 1 ต.ค. 2026
+
+Q: ใครได้รับผลกระทบ?
+A: พนักงานที่อยู่ในขอบเขต...
+
+Q: ต้องทำอะไร?
+A: รับทราบ Policy ใหม่
+
+Q: หากมีกรณีพิเศษ?
+A: ติดต่อ HR</pre></div></article>
+
+<article class="card"><span class="tag">08 • Performance</span><h3>ช่วยเตรียม Performance Review</h3>
+<div class="case"><b>กรณี:</b> Manager มีข้อมูลผลงานหลายแหล่งและต้องเตรียม Review</div>
+<div class="prompt">สรุป Performance Evidence จากข้อมูลที่ให้ แบ่ง Achievement, KPI Gap, Strength, Development Area และคำถามสำหรับ 1:1 โดยไม่ตัดสินเกินหลักฐาน</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Achievement:
+• ส่งงาน 9/10 Milestones ตรงเวลา
+• ลด Defect 18%
+
+Strength:
+• Collaboration
+• Problem Solving
+
+Development:
+• Documentation
+• Stakeholder Communication
+
+คำถาม 1:1:
+“อะไรเป็นอุปสรรคต่อ Milestone ที่พลาด?”</pre></div></article>
+
+<article class="card"><span class="tag">09 • Training</span><h3>วิเคราะห์ Training Needs</h3>
+<div class="case"><b>กรณี:</b> ต้องทำ Training Plan ประจำปี</div>
+<div class="prompt">จาก Skill Matrix, Performance และ Survey หา Skill Gap แล้วจัดลำดับ Training Priority พร้อม Target Group</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Priority 1:
+Data Analysis
+Gap สูง / ใช้หลายทีม
+Target: Analyst / Supervisor
+
+Priority 2:
+Leadership
+Gap สูงใน First-line Manager
+
+Priority 3:
+Presentation
+Gap ปานกลาง
+
+Recommendation:
+ทำ Data Analysis ก่อนใน Q1</pre></div></article>
+
+<article class="card"><span class="tag">10 • HR Report</span><h3>สร้าง HR Executive Summary</h3>
+<div class="case"><b>กรณี:</b> ผู้บริหารต้องการภาพรวม HR รายเดือน</div>
+<div class="prompt">จาก HR Metrics สร้าง Executive Summary: Headcount, Hiring, Turnover, Absence, OT, Key Risk และ Recommendation</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>HR Monthly Summary
+
+Headcount: 520
+New Hire: 18
+Resign: 11
+Turnover: 13%
+Absence: 2.8%
+OT: +14% MoM
+
+Key Risk:
+OT สูงใน Operation
+
+Recommendation:
+ตรวจ Workload และ Staffing
+ของทีม Operation</pre></div></article>
+</div></section>
+
+<section id="recruit">
+<div class="role-title"><h2>🧑‍💼 5. Recruit</h2><span class="badge">10 Use Cases</span></div>
+<p class="note">เน้น CV Screening, Candidate Matching, Interview, Communication และ Recruitment Analytics</p>
+<div class="grid">
+
+<article class="card"><span class="tag">01 • CV Screening</span><h3>อ่าน CV จำนวนมาก</h3>
+<div class="case"><b>กรณี:</b> ตำแหน่งเดียวมี CV 200 ใบ</div>
+<div class="prompt">เทียบ CV กับ JD และสรุป Candidate, Must-have Match, Missing Skill, Relevant Experience, Concern และ Screening Group</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Candidate: Somchai
+
+Must-have:
+4/5
+
+Experience:
+5 years System Analysis
+
+Matched:
+✓ Requirement Analysis
+✓ SQL
+✓ UML
+✓ Stakeholder Management
+
+Missing:
+API Testing
+
+Concern:
+เปลี่ยนงาน 3 ครั้งใน 2 ปี
+
+Group:
+REVIEW</pre></div></article>
+
+<article class="card"><span class="tag">02 • Matching</span><h3>จัดอันดับ Candidate</h3>
+<div class="case"><b>กรณี:</b> มีผู้สมัคร 50 คนและต้อง Shortlist 10 คน</div>
+<div class="prompt">จัดอันดับ Candidate ตาม JD โดยแยก Skill, Experience, Education และ Role Fit พร้อมแสดง Evidence ที่ใช้ให้คะแนน</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>1. A — 91
+Skill 95 | Exp 90 | Fit 89
+
+2. B — 87
+Skill 88 | Exp 92 | Fit 82
+
+3. C — 84
+Skill 90 | Exp 80 | Fit 83
+
+Top 10:
+แนะนำให้ Recruiter Review
+โดยเริ่มจาก A → B → C</pre></div></article>
+
+<article class="card"><span class="tag">03 • Interview</span><h3>สร้าง Interview Questions</h3>
+<div class="case"><b>กรณี:</b> Hiring Manager ไม่รู้ว่าจะถามอะไรให้วัด Competency</div>
+<div class="prompt">สร้างคำถามสัมภาษณ์ 15 ข้อ แบ่ง Technical, Behavioral, Problem Solving และ Role-specific พร้อมสิ่งที่ควรฟังจากคำตอบ</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Technical:
+“เล่า Requirement ที่ซับซ้อนที่สุด...”
+
+Problem Solving:
+“ถ้า User กับ Developer เข้าใจไม่ตรงกัน
+คุณจะจัดการอย่างไร?”
+
+Behavioral:
+“เล่าเหตุการณ์ที่คุณต้องรับ Feedback
+ที่ไม่เห็นด้วย...”
+
+สิ่งที่ควรฟัง:
+• วิธีคิด
+• Evidence
+• Ownership
+• Communication</pre></div></article>
+
+<article class="card"><span class="tag">04 • Interview Summary</span><h3>สรุปผลสัมภาษณ์</h3>
+<div class="case"><b>กรณี:</b> Interviewer จด Note กระจัดกระจาย</div>
+<div class="prompt">จัด Interview Note เป็น Competency, Evidence, Strength, Concern, Missing Evidence และ Follow-up Question</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Competency: Problem Solving
+Evidence:
+แก้ Production Issue โดยวิเคราะห์ Log
+
+Strength:
+คิดเป็นขั้นตอน
+มี Ownership
+
+Concern:
+ยังไม่มีประสบการณ์ Cloud
+
+Follow-up:
+“ถ้า System ต้อง Scale 10x
+คุณจะเริ่มวิเคราะห์จากอะไร?”</pre></div></article>
+
+<article class="card"><span class="tag">05 • Candidate Communication</span><h3>นัดสัมภาษณ์อัตโนมัติ</h3>
+<div class="case"><b>กรณี:</b> ต้องนัดผู้สมัครจำนวนมากหลายช่องทาง</div>
+<div class="prompt">สร้าง Email, LINE และ Reminder จากข้อมูล Candidate โดยตรวจให้วันเวลาและช่องทางตรงกัน</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Subject: Interview Invitation — System Analyst
+
+สวัสดีคุณสมชาย
+
+ขอเชิญสัมภาษณ์ตำแหน่ง System Analyst
+วันที่: 18 ก.ย. 2026
+เวลา: 10:00 น.
+ช่องทาง: Microsoft Teams
+
+กรุณาเตรียม:
+Resume และ Portfolio
+
+ขอบคุณครับ/ค่ะ</pre></div></article>
+
+<article class="card"><span class="tag">06 • Rejection</span><h3>ร่างข้อความแจ้งผลผู้สมัคร</h3>
+<div class="case"><b>กรณี:</b> ต้องแจ้ง Candidate จำนวนมากอย่างสุภาพและเป็นมาตรฐาน</div>
+<div class="prompt">เขียนข้อความแจ้งผลไม่ผ่านสัมภาษณ์แบบสุภาพ กระชับ ไม่ให้เหตุผลเกินข้อมูลที่ HR อนุมัติ และรักษา Candidate Experience</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Subject: ผลการสัมภาษณ์ตำแหน่ง...
+
+เรียนคุณ...
+
+ขอบคุณสำหรับเวลาและความสนใจในตำแหน่ง...
+
+หลังจากพิจารณาในกระบวนการคัดเลือก
+ครั้งนี้เรายังไม่สามารถดำเนินการต่อได้
+
+ขอขอบคุณสำหรับความสนใจ
+และหวังว่าจะมีโอกาสได้ร่วมงานกันในอนาคตครับ/ค่ะ</pre></div></article>
+
+<article class="card"><span class="tag">07 • Funnel</span><h3>วิเคราะห์ Recruitment Funnel</h3>
+<div class="case"><b>กรณี:</b> มีผู้สมัครมาก แต่จำนวน Hire ต่ำ</div>
+<div class="prompt">วิเคราะห์ Applicant → Screening → Interview → Offer → Hire และหาจุดที่ Conversion ต่ำที่สุด พร้อมสมมติฐาน</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Applicants: 200
+Screened: 80 — 40%
+Interview: 20 — 25%
+Offer: 5 — 25%
+Hire: 3 — 60%
+
+Bottleneck:
+Screening → Interview
+
+Possible Causes:
+• JD กว้างเกินไป
+• Source ไม่ตรง Target
+• Screening Criteria ไม่ชัด
+
+Next:
+ตรวจ CV ที่ถูก Reject 60 ราย</pre></div></article>
+
+<article class="card"><span class="tag">08 • Source</span><h3>วิเคราะห์แหล่งที่มาของ Candidate</h3>
+<div class="case"><b>กรณี:</b> ลงประกาศหลายช่องทางและต้องรู้ว่า Channel ไหนคุ้มค่า</div>
+<div class="prompt">วิเคราะห์ Source ของ Candidate ตาม Applicant, Interview, Offer, Hire, Cost per Hire และ Quality Proxy</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Job Board A
+Applicants: 100
+Hire: 1
+Cost/Hire: สูง
+
+Referral
+Applicants: 25
+Hire: 5
+Cost/Hire: ต่ำ
+Quality Proxy: สูง
+
+Recommendation:
+เพิ่ม Referral Program
+และลดงบ Source ที่ Conversion ต่ำ</pre></div></article>
+
+<article class="card"><span class="tag">09 • Shortlist</span><h3>สร้าง Shortlist ให้ Hiring Manager</h3>
+<div class="case"><b>กรณี:</b> Hiring Manager ไม่มีเวลาทบทวน CV ทั้งหมด</div>
+<div class="prompt">จาก CV และ JD สร้าง Shortlist 8 คน โดยสรุป 1 หน้า/คน: Match, Evidence, Gap, Concern และคำถามที่ควรถาม</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>SHORTLIST #1
+Candidate: A
+
+Why Shortlisted:
+มีประสบการณ์ตรง 4 ปี
+
+Strong:
+• Requirement
+• SQL
+• Stakeholder
+
+Gap:
+ไม่มี Healthcare Experience
+
+Interview Focus:
+ถามเรื่อง Domain Learning
+และการทำงานกับ User หลายกลุ่ม</pre></div></article>
+
+<article class="card"><span class="tag">10 • Hiring Report</span><h3>สร้าง Recruitment Executive Report</h3>
+<div class="case"><b>กรณี:</b> HR Manager ต้องรายงานสถานะ Hiring ให้ผู้บริหาร</div>
+<div class="prompt">จาก Recruitment Data สร้าง Executive Summary: Open Position, Aging, Pipeline, Bottleneck, Risk และ Action</div>
+<div class="output"><div class="output-title">ตัวอย่างผลลัพธ์</div><pre>Recruitment Summary
+
+Open Positions: 12
+Aging > 60 Days: 4
+Interview Stage: 18 Candidates
+Offer: 3
+Expected Hire: 2
+
+Top Risk:
+System Analyst — 78 days
+ผู้สมัคร Technical Fit น้อย
+
+Action:
+เพิ่ม Source
+ปรับ JD
+เพิ่ม Technical Screening</pre></div></article>
+</div></section>
+
+<section id="workflow">
+<div class="role-title"><h2>🔗 ตัวอย่าง AI Workflow ข้าม Role</h2><span class="badge">5 End-to-End Cases</span></div>
+<div class="grid">
+<article class="card"><h3>Marketing → Sales</h3>
+<div class="flow"><span>Campaign</span><i>→</i><span>Lead</span><i>→</i><span>AI Score</span><i>→</i><span>Sales</span><i>→</i><span>Meeting</span><i>→</i><span>Proposal</span></div>
+<p><b>ตัวอย่าง:</b> Marketing ได้ Lead 500 ราย → AI จัด High Priority 80 ราย → Sales ติดต่อ → AI สรุป Meeting → สร้าง Proposal → Update Pipeline</p></article>
+
+<article class="card"><h3>Recruit → HR → Onboarding</h3>
+<div class="flow"><span>CV</span><i>→</i><span>Screening</span><i>→</i><span>Interview</span><i>→</i><span>Hire</span><i>→</i><span>Onboarding</span></div>
+<p><b>ตัวอย่าง:</b> AI อ่าน CV → สรุป Shortlist → สร้างคำถาม → สรุป Interview → เมื่อรับเข้าทำงาน นำ Role ไปสร้าง 30/60/90 Plan</p></article>
+
+<article class="card"><h3>ISO → HR → Employee</h3>
+<div class="flow"><span>Policy</span><i>→</i><span>AI Q&A</span><i>→</i><span>FAQ</span><i>→</i><span>Announcement</span></div>
+<p><b>ตัวอย่าง:</b> มี Policy ใหม่ → AI วิเคราะห์เนื้อหา → สร้าง FAQ → HR Review → ประกาศให้พนักงาน → AI ตอบคำถามจาก Source เดิม</p></article>
+
+<article class="card"><h3>Sales → Customer Insight → Marketing</h3>
+<div class="flow"><span>Meeting Notes</span><i>→</i><span>AI Theme</span><i>→</i><span>Pain Point</span><i>→</i><span>Marketing Content</span></div>
+<p><b>ตัวอย่าง:</b> Sales มี Meeting Notes 100 ราย → AI พบ Pain Point ซ้ำ → Marketing นำ Pain Point ไปสร้าง Educational Content และ Campaign</p></article>
+
+<article class="card"><h3>AI Knowledge Assistant ทั้งองค์กร</h3>
+<div class="flow"><span>ISO</span><i>+</i><span>HR</span><i>+</i><span>Product</span><i>+</i><span>Process</span><i>→</i><span>AI Assistant</span></div>
+<p><b>ตัวอย่าง:</b> พนักงานถาม “ขั้นตอนนี้ทำอย่างไร?” → AI ค้นจาก Knowledge Base → ตอบพร้อม Source → ถ้าไม่พบข้อมูลให้ส่งต่อเจ้าของ Process แทนการเดา</p></article>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>🎯 สรุป: งานแบบไหนควรเริ่มเอา AI มาใช้ก่อน?</h2>
+<div class="grid">
+<div><h3>เหมาะมาก</h3><p>อ่านเอกสารจำนวนมาก • สรุปข้อมูล • ค้นหา • จัดหมวดหมู่ • Draft • เปรียบเทียบ • วิเคราะห์ Pattern • สร้าง Report • สร้าง Content</p></div>
+<div><h3>ควรมี Human Review</h3><p>การอนุมัติเอกสาร • การรับ/ไม่รับพนักงาน • การประเมินบุคคล • Compliance Decision • ข้อมูลสำคัญ/ข้อมูลส่วนบุคคล • การตัดสินใจที่มีผลกระทบสูง</p></div>
+</div>
+</div>
+</section>
+
+<div class="footer">AI Use Cases by Role — Detailed Examples • ตัวอย่างผลลัพธ์เป็น Mock Output เพื่อใช้เป็นแนวทางในการออกแบบ AI Workflow จริง</div>
+</main>
+</body>
+</html>
