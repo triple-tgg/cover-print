@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graphics Command Library — 120 Commands</title>
+<style>
+:root {
+  --bg:#f7f8fc; --surface:#fff; --text:#172033; --muted:#697386;
+  --line:#e7eaf1; --purple:#6d5dfc; --pink:#f05aa6; --blue:#3d8bfd;
+  --cyan:#27b8c7; --green:#27a96b; --orange:#f39a3d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI","Noto Sans Thai",Arial,sans-serif;
+  line-height:1.6;
+}
+header{
+  position:relative;overflow:hidden;color:#fff;
+  background:linear-gradient(135deg,#5b4ff4 0%,#7868ff 42%,#ef62ad 100%);
+}
+header:before,header:after{
+  content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.11);
+}
+header:before{width:330px;height:330px;right:-80px;top:-150px}
+header:after{width:240px;height:240px;left:-100px;bottom:-140px}
+.header-inner{position:relative;z-index:1;max-width:1160px;margin:auto;padding:58px 28px 44px}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+h1{font-size:clamp(34px,6vw,60px);line-height:1.02;letter-spacing:-.04em;margin:12px 0 15px}
+.subtitle{max-width:820px;margin:0;color:rgba(255,255,255,.88);font-size:16px}
+.stats{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px}
+.stat{padding:7px 13px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.13);border-radius:999px;font-size:13px;backdrop-filter:blur(8px)}
+.toolbar{position:sticky;top:0;z-index:30;background:rgba(247,248,252,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.toolbar-inner{max-width:1160px;margin:auto;padding:12px 28px;display:flex;gap:10px}
+.search{width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 15px;font-size:14px;outline:none;box-shadow:0 2px 8px rgba(30,40,70,.03)}
+.search:focus{border-color:#a99fff;box-shadow:0 0 0 4px rgba(109,93,252,.12)}
+.count{display:flex;align-items:center;white-space:nowrap;padding:0 12px;color:var(--muted);font-size:13px}
+main{max-width:1160px;margin:auto;padding:30px 28px 70px}
+.category{margin:35px 0 50px}
+.category-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}
+.category-title h2{margin:0;font-size:23px;letter-spacing:-.02em}
+.category-title span{font-size:12px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 10px}
+.category:nth-child(6n+1) .category-title h2{color:var(--purple)}
+.category:nth-child(6n+2) .category-title h2{color:var(--blue)}
+.category:nth-child(6n+3) .category-title h2{color:var(--pink)}
+.category:nth-child(6n+4) .category-title h2{color:var(--cyan)}
+.category:nth-child(6n+5) .category-title h2{color:var(--orange)}
+.category:nth-child(6n+6) .category-title h2{color:var(--green)}
+.command{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:17px;margin:11px 0;box-shadow:0 3px 12px rgba(35,45,80,.035);transition:.18s ease}
+.command:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(35,45,80,.08);border-color:#d8dce7}
+.top{display:flex;align-items:center;gap:10px}
+.cmd code{display:inline-block;font-size:15px;font-weight:800;background:linear-gradient(135deg,#f0edff,#fcecf6);color:#4036a4;padding:6px 10px;border-radius:8px}
+.copy{margin-left:auto;border:1px solid #d9dce5;background:#fff;color:#4b5563;border-radius:8px;padding:6px 11px;cursor:pointer;font-size:12px;font-weight:800}
+.copy:hover{background:#f6f7fa}
+.copy.copied{background:#ecfdf3;color:#087443;border-color:#b8e7ce}
+.meaning{margin-top:10px;font-size:14px;font-weight:600}
+.label{margin-top:13px;font-size:10px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:#9aa1af}
+.usage{font-size:13px;color:#667085}
+.usage code{background:#f1f2f5;padding:2px 5px;border-radius:5px;color:#333}
+pre{white-space:pre-wrap;word-break:break-word;margin:6px 0 0;background:#f8f9fb;border:1px solid #edf0f4;border-radius:9px;padding:11px 12px;font-size:13px;color:#394150}
+.empty{display:none;text-align:center;padding:70px 20px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:28px;text-align:center;color:#8a91a0;font-size:12px;background:#fff}
+@media(max-width:700px){
+  .header-inner{padding:42px 18px 34px} main{padding:22px 18px 55px}
+  .toolbar-inner{padding:10px 18px} .count{display:none}
+  .category-title h2{font-size:20px} .command{padding:14px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="eyebrow">Graphics & Image Prompt Library</div>
+    <h1>Graphics Command<br>&amp; Image Toolkit</h1>
+    <p class="subtitle">รวมคำสั่งสำหรับสร้าง วิเคราะห์ แยกองค์ประกอบ แก้ไขภาพ จัดการพื้นหลัง ขนาด สี แสง Typography, UI และงาน Marketing — พร้อมวิธีใช้และตัวอย่าง</p>
+    <div class="stats">
+      <div class="stat"><strong>120</strong> Commands</div>
+      <div class="stat">7 หมวดหมู่</div>
+      <div class="stat">📋 Copy ได้ทุกคำสั่ง</div>
+      <div class="stat">🔎 ค้นหาได้</div>
+      <div class="stat">☀️ Light Mode</div>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <input id="search" class="search" type="search" placeholder="ค้นหา เช่น background, OCR, logo, anime..." autocomplete="off">
+    <div id="count" class="count">120 รายการ</div>
+  </div>
+</div>
+
+<main id="content">
+<section class="category" data-category="🎨 สร้างภาพ"><div class="category-title"><h2>🎨 สร้างภาพ</h2><span>20 commands</span></div>
+<article class="command" data-search="/create สร้างภาพใหม่จากคำอธิบาย สร้างภาพใหม่จากคำอธิบายที่กำหนด">
+  <div class="top">
+    <div class="cmd"><code>/create</code></div>
+    <button class="copy" onclick="copyText(this, '/create')">Copy</button>
+  </div>
+  <div class="meaning">สร้างภาพใหม่จากคำอธิบาย</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/create</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้างภาพใหม่จากคำอธิบายที่กำหนด</pre>
+</article>
+<article class="command" data-search="/generate สร้างภาพตาม prompt สร้างภาพตาม prompt แบบละเอียด">
+  <div class="top">
+    <div class="cmd"><code>/generate</code></div>
+    <button class="copy" onclick="copyText(this, '/generate')">Copy</button>
+  </div>
+  <div class="meaning">สร้างภาพตาม Prompt</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/generate</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้างภาพตาม Prompt แบบละเอียด</pre>
+</article>
+<article class="command" data-search="/illustration สร้างภาพ illustration สร้างภาพประกอบสำหรับบทความหรือ presentation">
+  <div class="top">
+    <div class="cmd"><code>/illustration</code></div>
+    <button class="copy" onclick="copyText(this, '/illustration')">Copy</button>
+  </div>
+  <div class="meaning">สร้างภาพ Illustration</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/illustration</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้างภาพประกอบสำหรับบทความหรือ Presentation</pre>
+</article>
+<article class="command" data-search="/poster สร้างโปสเตอร์ ออกแบบโปสเตอร์ประชาสัมพันธ์">
+  <div class="top">
+    <div class="cmd"><code>/poster</code></div>
+    <button class="copy" onclick="copyText(this, '/poster')">Copy</button>
+  </div>
+  <div class="meaning">สร้างโปสเตอร์</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/poster</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ออกแบบโปสเตอร์ประชาสัมพันธ์</pre>
+</article>
+<article class="command" data-search="/infographic สร้าง infographic สร้าง infographic อธิบายข้อมูลเป็นภาพ">
+  <div class="top">
+    <div class="cmd"><code>/infographic</code></div>
+    <button class="copy" onclick="copyText(this, '/infographic')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Infographic</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/infographic</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้าง Infographic อธิบายข้อมูลเป็นภาพ</pre>
+</article>
+<article class="command" data-search="/diagram สร้าง diagram สร้างแผนภาพหรือ flow ที่อ่านง่าย">
+  <div class="top">
+    <div class="cmd"><code>/diagram</code></div>
+    <button class="copy" onclick="copyText(this, '/diagram')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Diagram</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/diagram</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้างแผนภาพหรือ Flow ที่อ่านง่าย</pre>
+</article>
+<article class="command" data-search="/icon สร้าง icon สร้างไอคอนสำหรับระบบหรือเว็บไซต์">
+  <div class="top">
+    <div class="cmd"><code>/icon</code></div>
+    <button class="copy" onclick="copyText(this, '/icon')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Icon</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/icon</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้างไอคอนสำหรับระบบหรือเว็บไซต์</pre>
+</article>
+<article class="command" data-search="/logo สร้าง logo สร้างโลโก้ตาม brand ที่กำหนด">
+  <div class="top">
+    <div class="cmd"><code>/logo</code></div>
+    <button class="copy" onclick="copyText(this, '/logo')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Logo</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/logo</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้างโลโก้ตาม Brand ที่กำหนด</pre>
+</article>
+<article class="command" data-search="/mockup สร้าง mockup สร้างภาพ mockup บนมือถือหรืออุปกรณ์">
+  <div class="top">
+    <div class="cmd"><code>/mockup</code></div>
+    <button class="copy" onclick="copyText(this, '/mockup')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Mockup</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/mockup</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้างภาพ Mockup บนมือถือหรืออุปกรณ์</pre>
+</article>
+<article class="command" data-search="/wireframe สร้าง wireframe สร้าง wireframe สำหรับ ui">
+  <div class="top">
+    <div class="cmd"><code>/wireframe</code></div>
+    <button class="copy" onclick="copyText(this, '/wireframe')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Wireframe</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/wireframe</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้าง Wireframe สำหรับ UI</pre>
+</article>
+<article class="command" data-search="/banner สร้าง banner สร้าง banner สำหรับเว็บไซต์หรือ social media">
+  <div class="top">
+    <div class="cmd"><code>/banner</code></div>
+    <button class="copy" onclick="copyText(this, '/banner')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Banner</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/banner</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้าง Banner สำหรับเว็บไซต์หรือ Social Media</pre>
+</article>
+<article class="command" data-search="/thumbnail สร้าง thumbnail สร้าง thumbnail สำหรับวิดีโอหรือบทความ">
+  <div class="top">
+    <div class="cmd"><code>/thumbnail</code></div>
+    <button class="copy" onclick="copyText(this, '/thumbnail')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Thumbnail</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/thumbnail</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้าง Thumbnail สำหรับวิดีโอหรือบทความ</pre>
+</article>
+<article class="command" data-search="/cover สร้าง cover สร้างภาพปกสำหรับเอกสารหรือ social media">
+  <div class="top">
+    <div class="cmd"><code>/cover</code></div>
+    <button class="copy" onclick="copyText(this, '/cover')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Cover</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/cover</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้างภาพปกสำหรับเอกสารหรือ Social Media</pre>
+</article>
+<article class="command" data-search="/social-post สร้าง social post ออกแบบภาพสำหรับโพสต์ social media">
+  <div class="top">
+    <div class="cmd"><code>/social-post</code></div>
+    <button class="copy" onclick="copyText(this, '/social-post')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Social Post</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/social-post</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ออกแบบภาพสำหรับโพสต์ Social Media</pre>
+</article>
+<article class="command" data-search="/presentation สร้างภาพสำหรับ presentation สร้าง visual สำหรับ slide presentation">
+  <div class="top">
+    <div class="cmd"><code>/presentation</code></div>
+    <button class="copy" onclick="copyText(this, '/presentation')">Copy</button>
+  </div>
+  <div class="meaning">สร้างภาพสำหรับ Presentation</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/presentation</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้าง Visual สำหรับ Slide Presentation</pre>
+</article>
+<article class="command" data-search="/pattern สร้าง pattern สร้าง pattern ที่ต่อเนื่องได้">
+  <div class="top">
+    <div class="cmd"><code>/pattern</code></div>
+    <button class="copy" onclick="copyText(this, '/pattern')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Pattern</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/pattern</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้าง Pattern ที่ต่อเนื่องได้</pre>
+</article>
+<article class="command" data-search="/sticker สร้าง sticker สร้างชุด sticker ตามธีม">
+  <div class="top">
+    <div class="cmd"><code>/sticker</code></div>
+    <button class="copy" onclick="copyText(this, '/sticker')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Sticker</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/sticker</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้างชุด Sticker ตามธีม</pre>
+</article>
+<article class="command" data-search="/character สร้าง character ออกแบบตัวละครตามรายละเอียด">
+  <div class="top">
+    <div class="cmd"><code>/character</code></div>
+    <button class="copy" onclick="copyText(this, '/character')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Character</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/character</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ออกแบบตัวละครตามรายละเอียด</pre>
+</article>
+<article class="command" data-search="/scene สร้าง scene สร้างฉากตามสถานที่ เวลา และบรรยากาศ">
+  <div class="top">
+    <div class="cmd"><code>/scene</code></div>
+    <button class="copy" onclick="copyText(this, '/scene')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Scene</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/scene</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้างฉากตามสถานที่ เวลา และบรรยากาศ</pre>
+</article>
+<article class="command" data-search="/product-shot สร้าง product shot สร้างภาพสินค้าแบบ studio">
+  <div class="top">
+    <div class="cmd"><code>/product-shot</code></div>
+    <button class="copy" onclick="copyText(this, '/product-shot')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Product Shot</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/product-shot</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้างภาพสินค้าแบบ Studio</pre>
+</article></section><section class="category" data-category="🔎 วิเคราะห์ภาพ"><div class="category-title"><h2>🔎 วิเคราะห์ภาพ</h2><span>20 commands</span></div>
+<article class="command" data-search="/analyze วิเคราะห์ภาพ วิเคราะห์ภาพโดยรวมและองค์ประกอบสำคัญ">
+  <div class="top">
+    <div class="cmd"><code>/analyze</code></div>
+    <button class="copy" onclick="copyText(this, '/analyze')">Copy</button>
+  </div>
+  <div class="meaning">วิเคราะห์ภาพ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/analyze</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>วิเคราะห์ภาพโดยรวมและองค์ประกอบสำคัญ</pre>
+</article>
+<article class="command" data-search="/describe อธิบายภาพ อธิบายสิ่งที่เห็นในภาพอย่างละเอียด">
+  <div class="top">
+    <div class="cmd"><code>/describe</code></div>
+    <button class="copy" onclick="copyText(this, '/describe')">Copy</button>
+  </div>
+  <div class="meaning">อธิบายภาพ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/describe</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>อธิบายสิ่งที่เห็นในภาพอย่างละเอียด</pre>
+</article>
+<article class="command" data-search="/detect ตรวจจับวัตถุ ระบุวัตถุทั้งหมดที่อยู่ในภาพ">
+  <div class="top">
+    <div class="cmd"><code>/detect</code></div>
+    <button class="copy" onclick="copyText(this, '/detect')">Copy</button>
+  </div>
+  <div class="meaning">ตรวจจับวัตถุ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/detect</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ระบุวัตถุทั้งหมดที่อยู่ในภาพ</pre>
+</article>
+<article class="command" data-search="/identify ระบุองค์ประกอบ บอกว่าแต่ละองค์ประกอบคืออะไร">
+  <div class="top">
+    <div class="cmd"><code>/identify</code></div>
+    <button class="copy" onclick="copyText(this, '/identify')">Copy</button>
+  </div>
+  <div class="meaning">ระบุองค์ประกอบ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/identify</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>บอกว่าแต่ละองค์ประกอบคืออะไร</pre>
+</article>
+<article class="command" data-search="/ocr อ่านข้อความ อ่านข้อความทั้งหมดจากภาพ">
+  <div class="top">
+    <div class="cmd"><code>/ocr</code></div>
+    <button class="copy" onclick="copyText(this, '/ocr')">Copy</button>
+  </div>
+  <div class="meaning">อ่านข้อความ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/ocr</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>อ่านข้อความทั้งหมดจากภาพ</pre>
+</article>
+<article class="command" data-search="/extract-text ดึงข้อความ ดึงข้อความและจัดรูปแบบให้อ่านง่าย">
+  <div class="top">
+    <div class="cmd"><code>/extract-text</code></div>
+    <button class="copy" onclick="copyText(this, '/extract-text')">Copy</button>
+  </div>
+  <div class="meaning">ดึงข้อความ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/extract-text</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ดึงข้อความและจัดรูปแบบให้อ่านง่าย</pre>
+</article>
+<article class="command" data-search="/layout วิเคราะห์ layout วิเคราะห์ตำแหน่งและโครงสร้างขององค์ประกอบ">
+  <div class="top">
+    <div class="cmd"><code>/layout</code></div>
+    <button class="copy" onclick="copyText(this, '/layout')">Copy</button>
+  </div>
+  <div class="meaning">วิเคราะห์ Layout</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/layout</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>วิเคราะห์ตำแหน่งและโครงสร้างขององค์ประกอบ</pre>
+</article>
+<article class="command" data-search="/color วิเคราะห์สี หาโทนสีและสีหลักของภาพ">
+  <div class="top">
+    <div class="cmd"><code>/color</code></div>
+    <button class="copy" onclick="copyText(this, '/color')">Copy</button>
+  </div>
+  <div class="meaning">วิเคราะห์สี</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/color</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>หาโทนสีและสีหลักของภาพ</pre>
+</article>
+<article class="command" data-search="/style วิเคราะห์ style ระบุแนวทางและสไตล์ภาพ">
+  <div class="top">
+    <div class="cmd"><code>/style</code></div>
+    <button class="copy" onclick="copyText(this, '/style')">Copy</button>
+  </div>
+  <div class="meaning">วิเคราะห์ Style</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/style</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ระบุแนวทางและสไตล์ภาพ</pre>
+</article>
+<article class="command" data-search="/composition วิเคราะห์ composition วิเคราะห์จุดสนใจ สมดุล และการจัดวาง">
+  <div class="top">
+    <div class="cmd"><code>/composition</code></div>
+    <button class="copy" onclick="copyText(this, '/composition')">Copy</button>
+  </div>
+  <div class="meaning">วิเคราะห์ Composition</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/composition</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>วิเคราะห์จุดสนใจ สมดุล และการจัดวาง</pre>
+</article>
+<article class="command" data-search="/font วิเคราะห์ font ประเมินลักษณะและประเภทฟอนต์ในภาพ">
+  <div class="top">
+    <div class="cmd"><code>/font</code></div>
+    <button class="copy" onclick="copyText(this, '/font')">Copy</button>
+  </div>
+  <div class="meaning">วิเคราะห์ Font</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/font</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ประเมินลักษณะและประเภทฟอนต์ในภาพ</pre>
+</article>
+<article class="command" data-search="/perspective วิเคราะห์ perspective วิเคราะห์มุมมองและเส้น perspective">
+  <div class="top">
+    <div class="cmd"><code>/perspective</code></div>
+    <button class="copy" onclick="copyText(this, '/perspective')">Copy</button>
+  </div>
+  <div class="meaning">วิเคราะห์ Perspective</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/perspective</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>วิเคราะห์มุมมองและเส้น Perspective</pre>
+</article>
+<article class="command" data-search="/lighting-analysis วิเคราะห์แสง วิเคราะห์ทิศทางและลักษณะแสง">
+  <div class="top">
+    <div class="cmd"><code>/lighting-analysis</code></div>
+    <button class="copy" onclick="copyText(this, '/lighting-analysis')">Copy</button>
+  </div>
+  <div class="meaning">วิเคราะห์แสง</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/lighting-analysis</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>วิเคราะห์ทิศทางและลักษณะแสง</pre>
+</article>
+<article class="command" data-search="/quality-check ตรวจคุณภาพ ตรวจความคมชัด noise และข้อผิดพลาดของภาพ">
+  <div class="top">
+    <div class="cmd"><code>/quality-check</code></div>
+    <button class="copy" onclick="copyText(this, '/quality-check')">Copy</button>
+  </div>
+  <div class="meaning">ตรวจคุณภาพ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/quality-check</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ตรวจความคมชัด Noise และข้อผิดพลาดของภาพ</pre>
+</article>
+<article class="command" data-search="/accessibility ตรวจ accessibility วิเคราะห์ความอ่านง่ายและ contrast">
+  <div class="top">
+    <div class="cmd"><code>/accessibility</code></div>
+    <button class="copy" onclick="copyText(this, '/accessibility')">Copy</button>
+  </div>
+  <div class="meaning">ตรวจ Accessibility</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/accessibility</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>วิเคราะห์ความอ่านง่ายและ Contrast</pre>
+</article>
+<article class="command" data-search="/visual-hierarchy วิเคราะห์ visual hierarchy วิเคราะห์ลำดับความสำคัญขององค์ประกอบ">
+  <div class="top">
+    <div class="cmd"><code>/visual-hierarchy</code></div>
+    <button class="copy" onclick="copyText(this, '/visual-hierarchy')">Copy</button>
+  </div>
+  <div class="meaning">วิเคราะห์ Visual Hierarchy</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/visual-hierarchy</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>วิเคราะห์ลำดับความสำคัญขององค์ประกอบ</pre>
+</article>
+<article class="command" data-search="/object-count นับวัตถุ นับจำนวนวัตถุแต่ละประเภท">
+  <div class="top">
+    <div class="cmd"><code>/object-count</code></div>
+    <button class="copy" onclick="copyText(this, '/object-count')">Copy</button>
+  </div>
+  <div class="meaning">นับวัตถุ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/object-count</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>นับจำนวนวัตถุแต่ละประเภท</pre>
+</article>
+<article class="command" data-search="/table-extract ดึงตาราง อ่านข้อความจากตารางในภาพ">
+  <div class="top">
+    <div class="cmd"><code>/table-extract</code></div>
+    <button class="copy" onclick="copyText(this, '/table-extract')">Copy</button>
+  </div>
+  <div class="meaning">ดึงตาราง</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/table-extract</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>อ่านข้อความจากตารางในภาพ</pre>
+</article>
+<article class="command" data-search="/compare-images เปรียบเทียบภาพ เปรียบเทียบความแตกต่างของภาพสองภาพ">
+  <div class="top">
+    <div class="cmd"><code>/compare-images</code></div>
+    <button class="copy" onclick="copyText(this, '/compare-images')">Copy</button>
+  </div>
+  <div class="meaning">เปรียบเทียบภาพ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/compare-images</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปรียบเทียบความแตกต่างของภาพสองภาพ</pre>
+</article>
+<article class="command" data-search="/summarize-image สรุปภาพ สรุปสาระสำคัญของภาพแบบสั้น">
+  <div class="top">
+    <div class="cmd"><code>/summarize-image</code></div>
+    <button class="copy" onclick="copyText(this, '/summarize-image')">Copy</button>
+  </div>
+  <div class="meaning">สรุปภาพ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/summarize-image</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สรุปสาระสำคัญของภาพแบบสั้น</pre>
+</article></section><section class="category" data-category="🧩 แยกองค์ประกอบ"><div class="category-title"><h2>🧩 แยกองค์ประกอบ</h2><span>15 commands</span></div>
+<article class="command" data-search="/separate แยกองค์ประกอบ แยกองค์ประกอบหลักออกจากกัน">
+  <div class="top">
+    <div class="cmd"><code>/separate</code></div>
+    <button class="copy" onclick="copyText(this, '/separate')">Copy</button>
+  </div>
+  <div class="meaning">แยกองค์ประกอบ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/separate</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แยกองค์ประกอบหลักออกจากกัน</pre>
+</article>
+<article class="command" data-search="/isolate แยกวัตถุ แยกเฉพาะวัตถุที่ต้องการ">
+  <div class="top">
+    <div class="cmd"><code>/isolate</code></div>
+    <button class="copy" onclick="copyText(this, '/isolate')">Copy</button>
+  </div>
+  <div class="meaning">แยกวัตถุ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/isolate</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แยกเฉพาะวัตถุที่ต้องการ</pre>
+</article>
+<article class="command" data-search="/extract-object ดึงวัตถุ ดึงวัตถุออกจากภาพ">
+  <div class="top">
+    <div class="cmd"><code>/extract-object</code></div>
+    <button class="copy" onclick="copyText(this, '/extract-object')">Copy</button>
+  </div>
+  <div class="meaning">ดึงวัตถุ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/extract-object</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ดึงวัตถุออกจากภาพ</pre>
+</article>
+<article class="command" data-search="/extract-person แยกบุคคล แยกบุคคลออกจากฉาก">
+  <div class="top">
+    <div class="cmd"><code>/extract-person</code></div>
+    <button class="copy" onclick="copyText(this, '/extract-person')">Copy</button>
+  </div>
+  <div class="meaning">แยกบุคคล</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/extract-person</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แยกบุคคลออกจากฉาก</pre>
+</article>
+<article class="command" data-search="/extract-product แยกสินค้า แยกสินค้าออกจากภาพ">
+  <div class="top">
+    <div class="cmd"><code>/extract-product</code></div>
+    <button class="copy" onclick="copyText(this, '/extract-product')">Copy</button>
+  </div>
+  <div class="meaning">แยกสินค้า</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/extract-product</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แยกสินค้าออกจากภาพ</pre>
+</article>
+<article class="command" data-search="/foreground แยก foreground แยกวัตถุด้านหน้า">
+  <div class="top">
+    <div class="cmd"><code>/foreground</code></div>
+    <button class="copy" onclick="copyText(this, '/foreground')">Copy</button>
+  </div>
+  <div class="meaning">แยก Foreground</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/foreground</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แยกวัตถุด้านหน้า</pre>
+</article>
+<article class="command" data-search="/background แยก background แยกฉากหลังออกจากตัวแบบ">
+  <div class="top">
+    <div class="cmd"><code>/background</code></div>
+    <button class="copy" onclick="copyText(this, '/background')">Copy</button>
+  </div>
+  <div class="meaning">แยก Background</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/background</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แยกฉากหลังออกจากตัวแบบ</pre>
+</article>
+<article class="command" data-search="/layers แยก layers แยกภาพตามองค์ประกอบหรือ layer">
+  <div class="top">
+    <div class="cmd"><code>/layers</code></div>
+    <button class="copy" onclick="copyText(this, '/layers')">Copy</button>
+  </div>
+  <div class="meaning">แยก Layers</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/layers</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แยกภาพตามองค์ประกอบหรือ Layer</pre>
+</article>
+<article class="command" data-search="/crop-object ตัดวัตถุ ตัดเฉพาะวัตถุที่เลือก">
+  <div class="top">
+    <div class="cmd"><code>/crop-object</code></div>
+    <button class="copy" onclick="copyText(this, '/crop-object')">Copy</button>
+  </div>
+  <div class="meaning">ตัดวัตถุ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/crop-object</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ตัดเฉพาะวัตถุที่เลือก</pre>
+</article>
+<article class="command" data-search="/segment แบ่งพื้นที่ แบ่งภาพตามพื้นที่หรือวัตถุ">
+  <div class="top">
+    <div class="cmd"><code>/segment</code></div>
+    <button class="copy" onclick="copyText(this, '/segment')">Copy</button>
+  </div>
+  <div class="meaning">แบ่งพื้นที่</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/segment</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แบ่งภาพตามพื้นที่หรือวัตถุ</pre>
+</article>
+<article class="command" data-search="/extract-face แยกใบหน้า แยกพื้นที่ใบหน้าออกจากภาพ">
+  <div class="top">
+    <div class="cmd"><code>/extract-face</code></div>
+    <button class="copy" onclick="copyText(this, '/extract-face')">Copy</button>
+  </div>
+  <div class="meaning">แยกใบหน้า</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/extract-face</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แยกพื้นที่ใบหน้าออกจากภาพ</pre>
+</article>
+<article class="command" data-search="/extract-text-area แยกพื้นที่ข้อความ แยกบริเวณที่มีข้อความ">
+  <div class="top">
+    <div class="cmd"><code>/extract-text-area</code></div>
+    <button class="copy" onclick="copyText(this, '/extract-text-area')">Copy</button>
+  </div>
+  <div class="meaning">แยกพื้นที่ข้อความ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/extract-text-area</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แยกบริเวณที่มีข้อความ</pre>
+</article>
+<article class="command" data-search="/extract-logo แยก logo แยกโลโก้ออกจากภาพ">
+  <div class="top">
+    <div class="cmd"><code>/extract-logo</code></div>
+    <button class="copy" onclick="copyText(this, '/extract-logo')">Copy</button>
+  </div>
+  <div class="meaning">แยก Logo</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/extract-logo</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แยกโลโก้ออกจากภาพ</pre>
+</article>
+<article class="command" data-search="/extract-silhouette แยก silhouette สร้าง silhouette ของตัวแบบ">
+  <div class="top">
+    <div class="cmd"><code>/extract-silhouette</code></div>
+    <button class="copy" onclick="copyText(this, '/extract-silhouette')">Copy</button>
+  </div>
+  <div class="meaning">แยก Silhouette</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/extract-silhouette</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้าง Silhouette ของตัวแบบ</pre>
+</article>
+<article class="command" data-search="/mask-object สร้าง mask สร้าง mask สำหรับวัตถุที่เลือก">
+  <div class="top">
+    <div class="cmd"><code>/mask-object</code></div>
+    <button class="copy" onclick="copyText(this, '/mask-object')">Copy</button>
+  </div>
+  <div class="meaning">สร้าง Mask</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/mask-object</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้าง Mask สำหรับวัตถุที่เลือก</pre>
+</article></section><section class="category" data-category="🪄 พื้นหลัง"><div class="category-title"><h2>🪄 พื้นหลัง</h2><span>12 commands</span></div>
+<article class="command" data-search="/remove-background ลบพื้นหลัง ลบพื้นหลังออกจากตัวแบบ">
+  <div class="top">
+    <div class="cmd"><code>/remove-background</code></div>
+    <button class="copy" onclick="copyText(this, '/remove-background')">Copy</button>
+  </div>
+  <div class="meaning">ลบพื้นหลัง</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/remove-background</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ลบพื้นหลังออกจากตัวแบบ</pre>
+</article>
+<article class="command" data-search="/replace-background เปลี่ยนพื้นหลัง แทนที่พื้นหลังด้วยฉากใหม่">
+  <div class="top">
+    <div class="cmd"><code>/replace-background</code></div>
+    <button class="copy" onclick="copyText(this, '/replace-background')">Copy</button>
+  </div>
+  <div class="meaning">เปลี่ยนพื้นหลัง</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/replace-background</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แทนที่พื้นหลังด้วยฉากใหม่</pre>
+</article>
+<article class="command" data-search="/blur-background เบลอพื้นหลัง เบลอพื้นหลังโดยคงตัวแบบให้ชัด">
+  <div class="top">
+    <div class="cmd"><code>/blur-background</code></div>
+    <button class="copy" onclick="copyText(this, '/blur-background')">Copy</button>
+  </div>
+  <div class="meaning">เบลอพื้นหลัง</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/blur-background</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เบลอพื้นหลังโดยคงตัวแบบให้ชัด</pre>
+</article>
+<article class="command" data-search="/extend-background ขยายพื้นหลัง ขยายฉากให้รองรับอัตราส่วนใหม่">
+  <div class="top">
+    <div class="cmd"><code>/extend-background</code></div>
+    <button class="copy" onclick="copyText(this, '/extend-background')">Copy</button>
+  </div>
+  <div class="meaning">ขยายพื้นหลัง</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/extend-background</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ขยายฉากให้รองรับอัตราส่วนใหม่</pre>
+</article>
+<article class="command" data-search="/clean-background ทำความสะอาดพื้นหลัง ลบสิ่งรบกวนในฉากหลัง">
+  <div class="top">
+    <div class="cmd"><code>/clean-background</code></div>
+    <button class="copy" onclick="copyText(this, '/clean-background')">Copy</button>
+  </div>
+  <div class="meaning">ทำความสะอาดพื้นหลัง</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/clean-background</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ลบสิ่งรบกวนในฉากหลัง</pre>
+</article>
+<article class="command" data-search="/transparent พื้นหลังโปร่งใส ทำพื้นหลังให้โปร่งใส">
+  <div class="top">
+    <div class="cmd"><code>/transparent</code></div>
+    <button class="copy" onclick="copyText(this, '/transparent')">Copy</button>
+  </div>
+  <div class="meaning">พื้นหลังโปร่งใส</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/transparent</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ทำพื้นหลังให้โปร่งใส</pre>
+</article>
+<article class="command" data-search="/studio-background พื้นหลัง studio สร้างพื้นหลังสินค้าแบบ studio">
+  <div class="top">
+    <div class="cmd"><code>/studio-background</code></div>
+    <button class="copy" onclick="copyText(this, '/studio-background')">Copy</button>
+  </div>
+  <div class="meaning">พื้นหลัง Studio</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/studio-background</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้างพื้นหลังสินค้าแบบ Studio</pre>
+</article>
+<article class="command" data-search="/gradient-background พื้นหลัง gradient สร้างพื้นหลังไล่สี">
+  <div class="top">
+    <div class="cmd"><code>/gradient-background</code></div>
+    <button class="copy" onclick="copyText(this, '/gradient-background')">Copy</button>
+  </div>
+  <div class="meaning">พื้นหลัง Gradient</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/gradient-background</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>สร้างพื้นหลังไล่สี</pre>
+</article>
+<article class="command" data-search="/white-background พื้นหลังขาว ทำพื้นหลังเป็นสีขาวสะอาด">
+  <div class="top">
+    <div class="cmd"><code>/white-background</code></div>
+    <button class="copy" onclick="copyText(this, '/white-background')">Copy</button>
+  </div>
+  <div class="meaning">พื้นหลังขาว</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/white-background</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ทำพื้นหลังเป็นสีขาวสะอาด</pre>
+</article>
+<article class="command" data-search="/black-background พื้นหลังดำ ทำพื้นหลังเป็นสีดำแบบ studio">
+  <div class="top">
+    <div class="cmd"><code>/black-background</code></div>
+    <button class="copy" onclick="copyText(this, '/black-background')">Copy</button>
+  </div>
+  <div class="meaning">พื้นหลังดำ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/black-background</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ทำพื้นหลังเป็นสีดำแบบ Studio</pre>
+</article>
+<article class="command" data-search="/environment-background เปลี่ยนเป็นฉากจริง เปลี่ยนพื้นหลังเป็นสถานที่ที่กำหนด">
+  <div class="top">
+    <div class="cmd"><code>/environment-background</code></div>
+    <button class="copy" onclick="copyText(this, '/environment-background')">Copy</button>
+  </div>
+  <div class="meaning">เปลี่ยนเป็นฉากจริง</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/environment-background</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนพื้นหลังเป็นสถานที่ที่กำหนด</pre>
+</article>
+<article class="command" data-search="/sky-replace เปลี่ยนท้องฟ้า เปลี่ยนท้องฟ้าโดยรักษาตัวแบบเดิม">
+  <div class="top">
+    <div class="cmd"><code>/sky-replace</code></div>
+    <button class="copy" onclick="copyText(this, '/sky-replace')">Copy</button>
+  </div>
+  <div class="meaning">เปลี่ยนท้องฟ้า</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/sky-replace</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนท้องฟ้าโดยรักษาตัวแบบเดิม</pre>
+</article></section><section class="category" data-category="✏️ แก้ไขและรีทัช"><div class="category-title"><h2>✏️ แก้ไขและรีทัช</h2><span>19 commands</span></div>
+<article class="command" data-search="/edit แก้ไขภาพ แก้ไขภาพตามคำสั่ง">
+  <div class="top">
+    <div class="cmd"><code>/edit</code></div>
+    <button class="copy" onclick="copyText(this, '/edit')">Copy</button>
+  </div>
+  <div class="meaning">แก้ไขภาพ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/edit</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แก้ไขภาพตามคำสั่ง</pre>
+</article>
+<article class="command" data-search="/remove ลบสิ่งที่ไม่ต้องการ ลบวัตถุหรือบุคคลที่ไม่ต้องการ">
+  <div class="top">
+    <div class="cmd"><code>/remove</code></div>
+    <button class="copy" onclick="copyText(this, '/remove')">Copy</button>
+  </div>
+  <div class="meaning">ลบสิ่งที่ไม่ต้องการ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/remove</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ลบวัตถุหรือบุคคลที่ไม่ต้องการ</pre>
+</article>
+<article class="command" data-search="/replace เปลี่ยนวัตถุ เปลี่ยนวัตถุหนึ่งเป็นอีกวัตถุหนึ่ง">
+  <div class="top">
+    <div class="cmd"><code>/replace</code></div>
+    <button class="copy" onclick="copyText(this, '/replace')">Copy</button>
+  </div>
+  <div class="meaning">เปลี่ยนวัตถุ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/replace</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนวัตถุหนึ่งเป็นอีกวัตถุหนึ่ง</pre>
+</article>
+<article class="command" data-search="/add เพิ่มองค์ประกอบ เพิ่มวัตถุหรือรายละเอียดใหม่">
+  <div class="top">
+    <div class="cmd"><code>/add</code></div>
+    <button class="copy" onclick="copyText(this, '/add')">Copy</button>
+  </div>
+  <div class="meaning">เพิ่มองค์ประกอบ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/add</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เพิ่มวัตถุหรือรายละเอียดใหม่</pre>
+</article>
+<article class="command" data-search="/retouch รีทัช รีทัชภาพให้ดูเป็นธรรมชาติ">
+  <div class="top">
+    <div class="cmd"><code>/retouch</code></div>
+    <button class="copy" onclick="copyText(this, '/retouch')">Copy</button>
+  </div>
+  <div class="meaning">รีทัช</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/retouch</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>รีทัชภาพให้ดูเป็นธรรมชาติ</pre>
+</article>
+<article class="command" data-search="/restore ฟื้นฟูภาพ ฟื้นฟูภาพเก่าหรือภาพเสียหาย">
+  <div class="top">
+    <div class="cmd"><code>/restore</code></div>
+    <button class="copy" onclick="copyText(this, '/restore')">Copy</button>
+  </div>
+  <div class="meaning">ฟื้นฟูภาพ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/restore</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ฟื้นฟูภาพเก่าหรือภาพเสียหาย</pre>
+</article>
+<article class="command" data-search="/enhance เพิ่มคุณภาพ ปรับปรุงรายละเอียดและคุณภาพ">
+  <div class="top">
+    <div class="cmd"><code>/enhance</code></div>
+    <button class="copy" onclick="copyText(this, '/enhance')">Copy</button>
+  </div>
+  <div class="meaning">เพิ่มคุณภาพ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/enhance</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ปรับปรุงรายละเอียดและคุณภาพ</pre>
+</article>
+<article class="command" data-search="/upscale เพิ่ม resolution เพิ่มความละเอียดของภาพ">
+  <div class="top">
+    <div class="cmd"><code>/upscale</code></div>
+    <button class="copy" onclick="copyText(this, '/upscale')">Copy</button>
+  </div>
+  <div class="meaning">เพิ่ม Resolution</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/upscale</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เพิ่มความละเอียดของภาพ</pre>
+</article>
+<article class="command" data-search="/sharpen เพิ่มความคม เพิ่มความคมของรายละเอียด">
+  <div class="top">
+    <div class="cmd"><code>/sharpen</code></div>
+    <button class="copy" onclick="copyText(this, '/sharpen')">Copy</button>
+  </div>
+  <div class="meaning">เพิ่มความคม</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/sharpen</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เพิ่มความคมของรายละเอียด</pre>
+</article>
+<article class="command" data-search="/denoise ลด noise ลด noise โดยรักษารายละเอียด">
+  <div class="top">
+    <div class="cmd"><code>/denoise</code></div>
+    <button class="copy" onclick="copyText(this, '/denoise')">Copy</button>
+  </div>
+  <div class="meaning">ลด Noise</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/denoise</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ลด Noise โดยรักษารายละเอียด</pre>
+</article>
+<article class="command" data-search="/fix-blur แก้ภาพเบลอ ปรับภาพที่เบลอให้ดูชัดขึ้น">
+  <div class="top">
+    <div class="cmd"><code>/fix-blur</code></div>
+    <button class="copy" onclick="copyText(this, '/fix-blur')">Copy</button>
+  </div>
+  <div class="meaning">แก้ภาพเบลอ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/fix-blur</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ปรับภาพที่เบลอให้ดูชัดขึ้น</pre>
+</article>
+<article class="command" data-search="/fix-exposure แก้ exposure ปรับภาพที่สว่างหรือมืดเกินไป">
+  <div class="top">
+    <div class="cmd"><code>/fix-exposure</code></div>
+    <button class="copy" onclick="copyText(this, '/fix-exposure')">Copy</button>
+  </div>
+  <div class="meaning">แก้ Exposure</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/fix-exposure</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ปรับภาพที่สว่างหรือมืดเกินไป</pre>
+</article>
+<article class="command" data-search="/fix-color แก้สี แก้ white balance และสีเพี้ยน">
+  <div class="top">
+    <div class="cmd"><code>/fix-color</code></div>
+    <button class="copy" onclick="copyText(this, '/fix-color')">Copy</button>
+  </div>
+  <div class="meaning">แก้สี</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/fix-color</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แก้ White Balance และสีเพี้ยน</pre>
+</article>
+<article class="command" data-search="/skin-retouch รีทัชผิว ปรับผิวอย่างเป็นธรรมชาติ">
+  <div class="top">
+    <div class="cmd"><code>/skin-retouch</code></div>
+    <button class="copy" onclick="copyText(this, '/skin-retouch')">Copy</button>
+  </div>
+  <div class="meaning">รีทัชผิว</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/skin-retouch</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ปรับผิวอย่างเป็นธรรมชาติ</pre>
+</article>
+<article class="command" data-search="/remove-red-eye ลบตาแดง แก้ปัญหาตาแดงจากภาพถ่าย">
+  <div class="top">
+    <div class="cmd"><code>/remove-red-eye</code></div>
+    <button class="copy" onclick="copyText(this, '/remove-red-eye')">Copy</button>
+  </div>
+  <div class="meaning">ลบตาแดง</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/remove-red-eye</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แก้ปัญหาตาแดงจากภาพถ่าย</pre>
+</article>
+<article class="command" data-search="/restore-details กู้รายละเอียด เพิ่มรายละเอียดที่สูญหาย">
+  <div class="top">
+    <div class="cmd"><code>/restore-details</code></div>
+    <button class="copy" onclick="copyText(this, '/restore-details')">Copy</button>
+  </div>
+  <div class="meaning">กู้รายละเอียด</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/restore-details</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เพิ่มรายละเอียดที่สูญหาย</pre>
+</article>
+<article class="command" data-search="/cleanup เก็บรายละเอียด เก็บขอบและจุดรบกวนเล็ก ๆ">
+  <div class="top">
+    <div class="cmd"><code>/cleanup</code></div>
+    <button class="copy" onclick="copyText(this, '/cleanup')">Copy</button>
+  </div>
+  <div class="meaning">เก็บรายละเอียด</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/cleanup</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เก็บขอบและจุดรบกวนเล็ก ๆ</pre>
+</article>
+<article class="command" data-search="/photo-repair ซ่อมภาพ ซ่อมรอยขาด รอยพับ หรือความเสียหาย">
+  <div class="top">
+    <div class="cmd"><code>/photo-repair</code></div>
+    <button class="copy" onclick="copyText(this, '/photo-repair')">Copy</button>
+  </div>
+  <div class="meaning">ซ่อมภาพ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/photo-repair</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ซ่อมรอยขาด รอยพับ หรือความเสียหาย</pre>
+</article>
+<article class="command" data-search="/colorize เติมสีภาพเก่า เปลี่ยนภาพขาวดำให้เป็นภาพสี">
+  <div class="top">
+    <div class="cmd"><code>/colorize</code></div>
+    <button class="copy" onclick="copyText(this, '/colorize')">Copy</button>
+  </div>
+  <div class="meaning">เติมสีภาพเก่า</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/colorize</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนภาพขาวดำให้เป็นภาพสี</pre>
+</article></section><section class="category" data-category="📐 ขนาดและองค์ประกอบ"><div class="category-title"><h2>📐 ขนาดและองค์ประกอบ</h2><span>15 commands</span></div>
+<article class="command" data-search="/resize ปรับขนาด ปรับขนาดภาพตามที่ต้องการ">
+  <div class="top">
+    <div class="cmd"><code>/resize</code></div>
+    <button class="copy" onclick="copyText(this, '/resize')">Copy</button>
+  </div>
+  <div class="meaning">ปรับขนาด</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/resize</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ปรับขนาดภาพตามที่ต้องการ</pre>
+</article>
+<article class="command" data-search="/reframe จัดกรอบใหม่ จัด composition ใหม่โดยรักษาตัวแบบ">
+  <div class="top">
+    <div class="cmd"><code>/reframe</code></div>
+    <button class="copy" onclick="copyText(this, '/reframe')">Copy</button>
+  </div>
+  <div class="meaning">จัดกรอบใหม่</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/reframe</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>จัด Composition ใหม่โดยรักษาตัวแบบ</pre>
+</article>
+<article class="command" data-search="/expand ขยายภาพ ขยาย canvas ออกด้านต่าง ๆ">
+  <div class="top">
+    <div class="cmd"><code>/expand</code></div>
+    <button class="copy" onclick="copyText(this, '/expand')">Copy</button>
+  </div>
+  <div class="meaning">ขยายภาพ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/expand</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ขยาย Canvas ออกด้านต่าง ๆ</pre>
+</article>
+<article class="command" data-search="/crop crop ครอบภาพตามสัดส่วนที่ต้องการ">
+  <div class="top">
+    <div class="cmd"><code>/crop</code></div>
+    <button class="copy" onclick="copyText(this, '/crop')">Copy</button>
+  </div>
+  <div class="meaning">Crop</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/crop</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ครอบภาพตามสัดส่วนที่ต้องการ</pre>
+</article>
+<article class="command" data-search="/square ทำเป็นสี่เหลี่ยม จัดภาพเป็น 1:1">
+  <div class="top">
+    <div class="cmd"><code>/square</code></div>
+    <button class="copy" onclick="copyText(this, '/square')">Copy</button>
+  </div>
+  <div class="meaning">ทำเป็นสี่เหลี่ยม</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/square</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>จัดภาพเป็น 1:1</pre>
+</article>
+<article class="command" data-search="/portrait จัดเป็นแนวตั้ง จัดภาพสำหรับแนวตั้ง">
+  <div class="top">
+    <div class="cmd"><code>/portrait</code></div>
+    <button class="copy" onclick="copyText(this, '/portrait')">Copy</button>
+  </div>
+  <div class="meaning">จัดเป็นแนวตั้ง</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/portrait</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>จัดภาพสำหรับแนวตั้ง</pre>
+</article>
+<article class="command" data-search="/landscape จัดเป็นแนวนอน จัดภาพสำหรับแนวนอน">
+  <div class="top">
+    <div class="cmd"><code>/landscape</code></div>
+    <button class="copy" onclick="copyText(this, '/landscape')">Copy</button>
+  </div>
+  <div class="meaning">จัดเป็นแนวนอน</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/landscape</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>จัดภาพสำหรับแนวนอน</pre>
+</article>
+<article class="command" data-search="/16-9 อัตราส่วน 16:9 จัดภาพสำหรับ presentation หรือ video">
+  <div class="top">
+    <div class="cmd"><code>/16-9</code></div>
+    <button class="copy" onclick="copyText(this, '/16-9')">Copy</button>
+  </div>
+  <div class="meaning">อัตราส่วน 16:9</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/16-9</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>จัดภาพสำหรับ Presentation หรือ Video</pre>
+</article>
+<article class="command" data-search="/9-16 อัตราส่วน 9:16 จัดภาพสำหรับ reels, shorts หรือ story">
+  <div class="top">
+    <div class="cmd"><code>/9-16</code></div>
+    <button class="copy" onclick="copyText(this, '/9-16')">Copy</button>
+  </div>
+  <div class="meaning">อัตราส่วน 9:16</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/9-16</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>จัดภาพสำหรับ Reels, Shorts หรือ Story</pre>
+</article>
+<article class="command" data-search="/4-5 อัตราส่วน 4:5 จัดภาพสำหรับ social media">
+  <div class="top">
+    <div class="cmd"><code>/4-5</code></div>
+    <button class="copy" onclick="copyText(this, '/4-5')">Copy</button>
+  </div>
+  <div class="meaning">อัตราส่วน 4:5</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/4-5</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>จัดภาพสำหรับ Social Media</pre>
+</article>
+<article class="command" data-search="/center จัดกึ่งกลาง จัดตัวแบบให้อยู่กึ่งกลาง">
+  <div class="top">
+    <div class="cmd"><code>/center</code></div>
+    <button class="copy" onclick="copyText(this, '/center')">Copy</button>
+  </div>
+  <div class="meaning">จัดกึ่งกลาง</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/center</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>จัดตัวแบบให้อยู่กึ่งกลาง</pre>
+</article>
+<article class="command" data-search="/align จัดแนว จัดองค์ประกอบให้ตรงแนว">
+  <div class="top">
+    <div class="cmd"><code>/align</code></div>
+    <button class="copy" onclick="copyText(this, '/align')">Copy</button>
+  </div>
+  <div class="meaning">จัดแนว</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/align</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>จัดองค์ประกอบให้ตรงแนว</pre>
+</article>
+<article class="command" data-search="/balance ปรับสมดุล ปรับสมดุลขององค์ประกอบ">
+  <div class="top">
+    <div class="cmd"><code>/balance</code></div>
+    <button class="copy" onclick="copyText(this, '/balance')">Copy</button>
+  </div>
+  <div class="meaning">ปรับสมดุล</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/balance</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ปรับสมดุลขององค์ประกอบ</pre>
+</article>
+<article class="command" data-search="/negative-space เพิ่มพื้นที่ว่าง เพิ่มพื้นที่ว่างสำหรับข้อความ">
+  <div class="top">
+    <div class="cmd"><code>/negative-space</code></div>
+    <button class="copy" onclick="copyText(this, '/negative-space')">Copy</button>
+  </div>
+  <div class="meaning">เพิ่มพื้นที่ว่าง</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/negative-space</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เพิ่มพื้นที่ว่างสำหรับข้อความ</pre>
+</article>
+<article class="command" data-search="/safe-area กำหนด safe area จัดองค์ประกอบให้อยู่ในพื้นที่ปลอดภัย">
+  <div class="top">
+    <div class="cmd"><code>/safe-area</code></div>
+    <button class="copy" onclick="copyText(this, '/safe-area')">Copy</button>
+  </div>
+  <div class="meaning">กำหนด Safe Area</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/safe-area</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>จัดองค์ประกอบให้อยู่ในพื้นที่ปลอดภัย</pre>
+</article></section><section class="category" data-category="🌈 สี แสง และสไตล์"><div class="category-title"><h2>🌈 สี แสง และสไตล์</h2><span>19 commands</span></div>
+<article class="command" data-search="/recolor เปลี่ยนสี เปลี่ยนสีขององค์ประกอบ">
+  <div class="top">
+    <div class="cmd"><code>/recolor</code></div>
+    <button class="copy" onclick="copyText(this, '/recolor')">Copy</button>
+  </div>
+  <div class="meaning">เปลี่ยนสี</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/recolor</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนสีขององค์ประกอบ</pre>
+</article>
+<article class="command" data-search="/grayscale ขาวดำ แปลงเป็นภาพขาวดำ">
+  <div class="top">
+    <div class="cmd"><code>/grayscale</code></div>
+    <button class="copy" onclick="copyText(this, '/grayscale')">Copy</button>
+  </div>
+  <div class="meaning">ขาวดำ</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/grayscale</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>แปลงเป็นภาพขาวดำ</pre>
+</article>
+<article class="command" data-search="/warm-tone โทนอุ่น ปรับภาพเป็นโทนอุ่น">
+  <div class="top">
+    <div class="cmd"><code>/warm-tone</code></div>
+    <button class="copy" onclick="copyText(this, '/warm-tone')">Copy</button>
+  </div>
+  <div class="meaning">โทนอุ่น</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/warm-tone</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ปรับภาพเป็นโทนอุ่น</pre>
+</article>
+<article class="command" data-search="/cool-tone โทนเย็น ปรับภาพเป็นโทนเย็น">
+  <div class="top">
+    <div class="cmd"><code>/cool-tone</code></div>
+    <button class="copy" onclick="copyText(this, '/cool-tone')">Copy</button>
+  </div>
+  <div class="meaning">โทนเย็น</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/cool-tone</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ปรับภาพเป็นโทนเย็น</pre>
+</article>
+<article class="command" data-search="/cinematic cinematic ปรับภาพให้มีอารมณ์แบบภาพยนตร์">
+  <div class="top">
+    <div class="cmd"><code>/cinematic</code></div>
+    <button class="copy" onclick="copyText(this, '/cinematic')">Copy</button>
+  </div>
+  <div class="meaning">Cinematic</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/cinematic</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ปรับภาพให้มีอารมณ์แบบภาพยนตร์</pre>
+</article>
+<article class="command" data-search="/vintage vintage เปลี่ยนเป็นสไตล์วินเทจ">
+  <div class="top">
+    <div class="cmd"><code>/vintage</code></div>
+    <button class="copy" onclick="copyText(this, '/vintage')">Copy</button>
+  </div>
+  <div class="meaning">Vintage</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/vintage</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนเป็นสไตล์วินเทจ</pre>
+</article>
+<article class="command" data-search="/minimal minimal ลดองค์ประกอบให้เรียบง่าย">
+  <div class="top">
+    <div class="cmd"><code>/minimal</code></div>
+    <button class="copy" onclick="copyText(this, '/minimal')">Copy</button>
+  </div>
+  <div class="meaning">Minimal</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/minimal</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ลดองค์ประกอบให้เรียบง่าย</pre>
+</article>
+<article class="command" data-search="/flat-design flat design เปลี่ยนเป็นงาน flat design">
+  <div class="top">
+    <div class="cmd"><code>/flat-design</code></div>
+    <button class="copy" onclick="copyText(this, '/flat-design')">Copy</button>
+  </div>
+  <div class="meaning">Flat Design</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/flat-design</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนเป็นงาน Flat Design</pre>
+</article>
+<article class="command" data-search="/cartoon cartoon เปลี่ยนเป็นสไตล์การ์ตูน">
+  <div class="top">
+    <div class="cmd"><code>/cartoon</code></div>
+    <button class="copy" onclick="copyText(this, '/cartoon')">Copy</button>
+  </div>
+  <div class="meaning">Cartoon</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/cartoon</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนเป็นสไตล์การ์ตูน</pre>
+</article>
+<article class="command" data-search="/anime anime เปลี่ยนเป็นสไตล์ anime">
+  <div class="top">
+    <div class="cmd"><code>/anime</code></div>
+    <button class="copy" onclick="copyText(this, '/anime')">Copy</button>
+  </div>
+  <div class="meaning">Anime</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/anime</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนเป็นสไตล์ Anime</pre>
+</article>
+<article class="command" data-search="/3d 3d เปลี่ยนเป็นภาพ 3d">
+  <div class="top">
+    <div class="cmd"><code>/3d</code></div>
+    <button class="copy" onclick="copyText(this, '/3d')">Copy</button>
+  </div>
+  <div class="meaning">3D</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/3d</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนเป็นภาพ 3D</pre>
+</article>
+<article class="command" data-search="/photorealistic photorealistic ทำให้ดูสมจริงเหมือนภาพถ่าย">
+  <div class="top">
+    <div class="cmd"><code>/photorealistic</code></div>
+    <button class="copy" onclick="copyText(this, '/photorealistic')">Copy</button>
+  </div>
+  <div class="meaning">Photorealistic</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/photorealistic</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>ทำให้ดูสมจริงเหมือนภาพถ่าย</pre>
+</article>
+<article class="command" data-search="/watercolor watercolor เปลี่ยนเป็นสีน้ำ">
+  <div class="top">
+    <div class="cmd"><code>/watercolor</code></div>
+    <button class="copy" onclick="copyText(this, '/watercolor')">Copy</button>
+  </div>
+  <div class="meaning">Watercolor</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/watercolor</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนเป็นสีน้ำ</pre>
+</article>
+<article class="command" data-search="/oil-painting oil painting เปลี่ยนเป็นภาพสีน้ำมัน">
+  <div class="top">
+    <div class="cmd"><code>/oil-painting</code></div>
+    <button class="copy" onclick="copyText(this, '/oil-painting')">Copy</button>
+  </div>
+  <div class="meaning">Oil Painting</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/oil-painting</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนเป็นภาพสีน้ำมัน</pre>
+</article>
+<article class="command" data-search="/sketch sketch เปลี่ยนเป็นภาพสเก็ตช์">
+  <div class="top">
+    <div class="cmd"><code>/sketch</code></div>
+    <button class="copy" onclick="copyText(this, '/sketch')">Copy</button>
+  </div>
+  <div class="meaning">Sketch</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/sketch</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนเป็นภาพสเก็ตช์</pre>
+</article>
+<article class="command" data-search="/pixel-art pixel art เปลี่ยนเป็น pixel art">
+  <div class="top">
+    <div class="cmd"><code>/pixel-art</code></div>
+    <button class="copy" onclick="copyText(this, '/pixel-art')">Copy</button>
+  </div>
+  <div class="meaning">Pixel Art</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/pixel-art</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนเป็น Pixel Art</pre>
+</article>
+<article class="command" data-search="/isometric isometric เปลี่ยนเป็นมุมมอง isometric">
+  <div class="top">
+    <div class="cmd"><code>/isometric</code></div>
+    <button class="copy" onclick="copyText(this, '/isometric')">Copy</button>
+  </div>
+  <div class="meaning">Isometric</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/isometric</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนเป็นมุมมอง Isometric</pre>
+</article>
+<article class="command" data-search="/neon neon เพิ่มสไตล์แสง neon">
+  <div class="top">
+    <div class="cmd"><code>/neon</code></div>
+    <button class="copy" onclick="copyText(this, '/neon')">Copy</button>
+  </div>
+  <div class="meaning">Neon</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/neon</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เพิ่มสไตล์แสง Neon</pre>
+</article>
+<article class="command" data-search="/paper-cut paper cut เปลี่ยนเป็นสไตล์ paper cut">
+  <div class="top">
+    <div class="cmd"><code>/paper-cut</code></div>
+    <button class="copy" onclick="copyText(this, '/paper-cut')">Copy</button>
+  </div>
+  <div class="meaning">Paper Cut</div>
+  <div class="label">วิธีใช้</div>
+  <div class="usage">อัปโหลดภาพที่ต้องการ แล้วพิมพ์ <code>/paper-cut</code> ตามด้วยรายละเอียดที่ต้องการ</div>
+  <div class="label">ตัวอย่าง</div>
+  <pre>เปลี่ยนเป็นสไตล์ Paper Cut</pre>
+</article></section>
+<div id="empty" class="empty">ไม่พบคำสั่งที่ค้นหา ลองใช้คำค้นอื่น</div>
+</main>
+
+<footer>Graphics Command Library • 120 conceptual image/graphics prompts</footer>
+
+<script>
+function copyText(button, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    button.textContent = "Copied!";
+    button.classList.add("copied");
+    setTimeout(() => { button.textContent = "Copy"; button.classList.remove("copied"); }, 1200);
+  }).catch(() => {
+    const area=document.createElement("textarea");
+    area.value=text; document.body.appendChild(area); area.select();
+    document.execCommand("copy"); area.remove();
+    button.textContent="Copied!"; button.classList.add("copied");
+    setTimeout(() => { button.textContent="Copy"; button.classList.remove("copied"); }, 1200);
+  });
+}
+const search=document.getElementById("search");
+const count=document.getElementById("count");
+const empty=document.getElementById("empty");
+const categories=[...document.querySelectorAll(".category")];
+search.addEventListener("input",()=>{
+  const q=search.value.trim().toLowerCase();
+  let visible=0;
+  categories.forEach(cat=>{
+    let n=0;
+    cat.querySelectorAll(".command").forEach(card=>{
+      const ok=!q || card.dataset.search.includes(q);
+      card.style.display=ok?"":"none";
+      if(ok){n++;visible++;}
+    });
+    cat.style.display=n?"":"none";
+  });
+  count.textContent=`${visible} รายการ`;
+  empty.style.display=visible?"none":"block";
+});
+</script>
+</body>
+</html>
